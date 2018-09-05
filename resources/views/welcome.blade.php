@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome to Stack-Apps
+                    Welcome to RobeSale App
                 </div>
             </div>
         </div>
