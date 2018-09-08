@@ -1331,7 +1331,7 @@ class ShopifyController extends Controller
                             "key" => "snippets/personalisation-popup.liquid",
                             "value" => $view
 					];
-		$themes_info = DB::Table('themesData')->where('shopId', session('shopifyId') )->where('themeId', $theme_id)->first();
+		$themes_info = DB::Table('themesdata')->where('shopId', session('shopifyId') )->where('themeId', $theme_id)->first();
 		if($themes_info)
 		{
 			return true;
@@ -1339,7 +1339,7 @@ class ShopifyController extends Controller
 			$data2 = $this->shopify->setShopUrl($shopUrl)->setAccessToken($accessToken)->put('/admin/themes/'.$theme_id.'/assets.json',[ 'asset' => $postData ]);
 			$template_name = "snippets/personalisation-popup.liquid";
 			$theme_id = $data2['theme_id'];
-			$id = DB::table('themesData')->insertGetId(
+			$id = DB::table('themesdata')->insertGetId(
 				['key' => $template_name, 'value' => $view, 'themeId' => $theme_id , 'shopId' => session('shopifyId'), 'disable' => '1']
 			);
 			$this->include_template_files();
