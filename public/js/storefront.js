@@ -38,6 +38,7 @@ var myAppJavaScript = function($) {
     $(".front_embroidery").hide();
     $(".back_embroidery").hide();
     $("#custom_image_front").show();
+    $("#custom_image_back").hide();
   });
 
   $("#ecom-modal__btn-close").click(function() {
