@@ -43,12 +43,16 @@ var myAppJavaScript = function($) {
     var value = $("input[name=front_only]").val();
     $("#front_line_embroidery").val(value);
     $("input[name=back_only]").val("");
+    $("input[name=front_both]").val("");
+    $("input[name=back_both]").val("");
   });
 
   $("input[name=back_only]").change(function() {
     var value = $("input[name=back_only]").val();
     $("#back_line_embroidery").val(value);
     $("input[name=front_only]").val("");
+    $("input[name=front_both]").val("");
+    $("input[name=back_both]").val("");
   });
 
   $("input[name=front_both]").change(function() {
