@@ -90,7 +90,7 @@ var myAppJavaScript = function($) {
   });
 
   jQuery.getJSON("/products/testing.js", function(product) {
-    alert("The title of this product is " + product.title);
+    console.log(product);
   });
   function add_product_to_cart() {
     var variant_id = $("#product_ids").val();
