@@ -32,6 +32,10 @@ var myAppJavaScript = function($) {
     $(".back_embroidery").hide();
   });
 
+  $("#ecom-modal__btn-close").click(function() {
+    $(".ecom-modal").hide();
+  });
+
   function add_product_to_cart() {
     var variant_id = $("#product_ids").val();
     var shop_url = Shopify.shop;
