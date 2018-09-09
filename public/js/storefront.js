@@ -42,31 +42,47 @@ var myAppJavaScript = function($) {
   $("input[name=front_only]").change(function() {
     var value = $("input[name=front_only]").val();
     $("#front_line_embroidery").val(value);
+    $("#back_line_embroidery").val("");
     $("input[name=back_only]").val("");
+
+    $("#front_line_embroidery_both").val("");
     $("input[name=front_both]").val("");
     $("input[name=back_both]").val("");
+    $("#back_line_embroidery_both").val("");
   });
 
   $("input[name=back_only]").change(function() {
     var value = $("input[name=back_only]").val();
     $("#back_line_embroidery").val(value);
+    $("#front_line_embroidery").val("");
     $("input[name=front_only]").val("");
+
+    $("#front_line_embroidery_both").val("");
     $("input[name=front_both]").val("");
     $("input[name=back_both]").val("");
+    $("#back_line_embroidery_both").val("");
   });
 
   $("input[name=front_both]").change(function() {
     var value = $("input[name=front_both]").val();
     $("#front_line_embroidery_both").val(value);
+
     $("input[name=front_only]").val("");
     $("input[name=back_only]").val("");
+
+    $("#front_line_embroidery").val("");
+    $("#back_line_embroidery").val("");
   });
 
   $("input[name=back_both]").change(function() {
     var value = $("input[name=back_both]").val();
     $("#back_line_embroidery_both").val(value);
+
     $("input[name=front_only]").val("");
     $("input[name=back_only]").val("");
+
+    $("#front_line_embroidery").val("");
+    $("#back_line_embroidery").val("");
   });
 
   $(".add_to_cart_custom_button").click(function() {
