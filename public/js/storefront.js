@@ -40,8 +40,8 @@ var myAppJavaScript = function($) {
   });
 
   $("input[name=front_only]").change(function() {
-    $value = $("input[name=front_only]").val();
-    $(".type-of-embroidery").val($value);
+    var value = $("input[name=front_only]").val();
+    $("#type-of-embroidery").val(value);
   });
   // $('input[name=back_only]').change(function() {  });
   // $('input[name=front_both]').change(function() {  });
