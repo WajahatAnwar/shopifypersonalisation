@@ -19,6 +19,8 @@ var myAppJavaScript = function($) {
     $(".front_embroidery").show();
     $(".back_embroidery").hide();
     $(".front_back_embroidery").hide();
+    $("#custom_image_front").show();
+    $("#custom_image_back").hide();
   });
 
   $("input[value='Back Embroidery']").click(function() {
@@ -26,6 +28,8 @@ var myAppJavaScript = function($) {
     $(".back_embroidery").show();
     $(".front_embroidery").hide();
     $(".front_back_embroidery").hide();
+    $("#custom_image_front").hide();
+    $("#custom_image_back").show();
   });
 
   $("input[value='Front & Back Embroidery']").click(function() {
@@ -33,6 +37,7 @@ var myAppJavaScript = function($) {
     $(".front_back_embroidery").show();
     $(".front_embroidery").hide();
     $(".back_embroidery").hide();
+    $("#custom_image_front").show();
   });
 
   $("#ecom-modal__btn-close").click(function() {
