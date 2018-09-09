@@ -39,6 +39,14 @@ var myAppJavaScript = function($) {
     $(".ecom-modal").hide();
   });
 
+  $("input[name=front_only]").change(function() {
+    $value = $("input[name=front_only]").val();
+    $(".type-of-embroidery").val($value);
+  });
+  // $('input[name=back_only]').change(function() {  });
+  // $('input[name=front_both]').change(function() {  });
+  // $('input[name=back_both]').change(function() {  });
+
   function add_product_to_cart() {
     var variant_id = $("#product_ids").val();
     var shop_url = Shopify.shop;
