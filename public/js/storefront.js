@@ -89,6 +89,9 @@ var myAppJavaScript = function($) {
     $(".btnAddToCart").trigger("click");
   });
 
+  jQuery.getJSON("/products/red-rain-coat.js", function(product) {
+    alert("The title of this product is " + product.title);
+  });
   function add_product_to_cart() {
     var variant_id = $("#product_ids").val();
     var shop_url = Shopify.shop;
