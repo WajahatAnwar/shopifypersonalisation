@@ -89,7 +89,7 @@ var myAppJavaScript = function($) {
     $(".btnAddToCart").trigger("click");
   });
 
-  jQuery.getJSON("/products/red-rain-coat.js", function(product) {
+  jQuery.getJSON("/products/testing.js", function(product) {
     alert("The title of this product is " + product.title);
   });
   function add_product_to_cart() {
