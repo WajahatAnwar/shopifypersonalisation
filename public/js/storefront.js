@@ -91,7 +91,7 @@ var myAppJavaScript = function($) {
 
   jQuery.getJSON("/products/testing.js", function(product) {
     $("#custom_image").attr("src", product.featured_image);
-    console.log(product);
+    console.log(product.images["0"]);
   });
   function add_product_to_cart() {
     var variant_id = $("#product_ids").val();
