@@ -21,6 +21,9 @@ var myAppJavaScript = function($) {
     $(".front_back_embroidery").hide();
     $("#custom_image_front").show();
     $("#custom_image_back").hide();
+
+    $("#embroidery_text_front").show();
+    $("#embroidery_text_back").hide();
   });
 
   $("input[value='Back Embroidery']").click(function() {
@@ -30,6 +33,9 @@ var myAppJavaScript = function($) {
     $(".front_back_embroidery").hide();
     $("#custom_image_front").hide();
     $("#custom_image_back").show();
+
+    $("#embroidery_text_front").hide();
+    $("#embroidery_text_back").show();
   });
 
   $("input[value='Front & Back Embroidery']").click(function() {
@@ -55,6 +61,8 @@ var myAppJavaScript = function($) {
     $("input[name=front_both]").val("");
     $("input[name=back_both]").val("");
     $("#back_line_embroidery_both").val("");
+
+    $("#embroidery_text_front").text(value);
   });
 
   $("input[name=back_only]").change(function() {
@@ -67,6 +75,8 @@ var myAppJavaScript = function($) {
     $("input[name=front_both]").val("");
     $("input[name=back_both]").val("");
     $("#back_line_embroidery_both").val("");
+
+    $("#embroidery_text_back").text(value);
   });
 
   $("input[name=front_both]").change(function() {
