@@ -90,7 +90,8 @@ var myAppJavaScript = function($) {
   });
 
   jQuery.getJSON("/products/testing.js", function(product) {
-    alert("The title of this product is " + product.featured_image);
+    $("#custom_image").attr("src", product.featured_image);
+    // alert("The title of this product is " + product.featured_image);
   });
   function add_product_to_cart() {
     var variant_id = $("#product_ids").val();
