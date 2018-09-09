@@ -16,18 +16,21 @@ var myAppJavaScript = function($) {
 
   $("input[value='Front Embroidery']").click(function() {
     $(".ecom-modal").show();
+    $(".front_embroidery").show();
     $(".back_embroidery").hide();
     $(".front_back_embroidery").hide();
   });
 
   $("input[value='Back Embroidery']").click(function() {
     $(".ecom-modal").show();
+    $(".back_embroidery").show();
     $(".front_embroidery").hide();
     $(".front_back_embroidery").hide();
   });
 
   $("input[value='Front & Back Embroidery']").click(function() {
     $(".ecom-modal").show();
+    $(".front_back_embroidery").show();
     $(".front_embroidery").hide();
     $(".back_embroidery").hide();
   });
