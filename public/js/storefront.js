@@ -53,14 +53,14 @@ var myAppJavaScript = function($) {
 
   $("input[name=front_both]").change(function() {
     var value = $("input[name=front_both]").val();
-    $("front_line_embroidery_both").val(value);
+    $("#front_line_embroidery_both").val(value);
     $("input[name=front_only]").val("");
     $("input[name=back_only]").val("");
   });
 
   $("input[name=back_both]").change(function() {
     var value = $("input[name=back_both]").val();
-    $("back_line_embroidery_both").val(value);
+    $("#back_line_embroidery_both").val(value);
     $("input[name=front_only]").val("");
     $("input[name=back_only]").val("");
   });
