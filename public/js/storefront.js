@@ -104,8 +104,8 @@ var myAppJavaScript = function($) {
   $(".add_to_cart_custom_button").click(function() {
     $(".btnAddToCart").trigger("click");
   });
-
-  jQuery.getJSON("/products/testing.js", function(product) {
+  var product_name = $("#product_name").val();
+  jQuery.getJSON("/products/" + product_name + ".js", function(product) {
     $("#custom_image_front").attr("src", product.images["0"]);
     $("#custom_image_back").attr("src", product.images["1"]);
     console.log(product.images["0"]);
