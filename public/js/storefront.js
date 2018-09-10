@@ -13,9 +13,11 @@ var myAppJavaScript = function($) {
   $("body").append(
     "<p>Your app is using jQuery version " + $.fn.jquery + "</p>"
   );
+  $(".header:contains(Embroidery)").hide();
   $(".front-embroidery").hide();
   $(".back-embroidery").hide();
   $(".front-back-embroidery").hide();
+
   $("#personlize_select").on("change", function() {
     var type = $("#personlize_select")
       .find(":selected")
