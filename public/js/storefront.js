@@ -17,7 +17,7 @@ var myAppJavaScript = function($) {
   $(".back-embroidery").hide();
   $(".front-back-embroidery").hide();
 
-  var type = $("#personlize_select option:selected").text();
+  var type = $("#personlize_select option:selected").val();
   console.log(type);
   if (type == "Front Embroidery") {
     $("input[value='Front Embroidery']").trigger("click");
