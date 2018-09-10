@@ -65,6 +65,9 @@ var myAppJavaScript = function($) {
     $(".back_embroidery").hide();
     $("#custom_image_front").show();
     $("#custom_image_back").hide();
+
+    $("#embroidery_text_front").show();
+    $("#embroidery_text_back").hide();
   });
 
   $("#ecom-modal__btn-close").click(function() {
