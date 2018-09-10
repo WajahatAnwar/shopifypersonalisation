@@ -18,14 +18,14 @@ var myAppJavaScript = function($) {
   $(".front-back-embroidery").hide();
 
   var type = $("#personlize_select option:selected").text();
-
-  if (type === "Front Embroidery") {
+  console.log(type);
+  if (type == "Front Embroidery") {
     $("input[value='Front Embroidery']").trigger("click");
   }
-  if (type === "Back Embroidery") {
+  if (type == "Back Embroidery") {
     $("input[value='Back Embroidery']").trigger("click");
   }
-  if (type === "Front & Back Embroidery") {
+  if (type == "Front & Back Embroidery") {
     $("input[value='Front & Back Embroidery']").trigger("click");
   }
 
