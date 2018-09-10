@@ -16,20 +16,21 @@ var myAppJavaScript = function($) {
   $(".front-embroidery").hide();
   $(".back-embroidery").hide();
   $(".front-back-embroidery").hide();
-
-  var type = $("#personlize_select")
-    .find(":selected")
-    .text();
-  console.log(type);
-  if (type == "Front Embroidery") {
-    $("input[value='Front Embroidery']").trigger("click");
-  }
-  if (type == "Back Embroidery") {
-    $("input[value='Back Embroidery']").trigger("click");
-  }
-  if (type == "Front & Back Embroidery") {
-    $("input[value='Front & Back Embroidery']").trigger("click");
-  }
+  $("#personlize_select").on("change", function() {
+    var type = $("#personlize_select")
+      .find(":selected")
+      .text();
+    console.log(type);
+    if (type == "Front Embroidery") {
+      $("input[value='Front Embroidery']").trigger("click");
+    }
+    if (type == "Back Embroidery") {
+      $("input[value='Back Embroidery']").trigger("click");
+    }
+    if (type == "Front & Back Embroidery") {
+      $("input[value='Front & Back Embroidery']").trigger("click");
+    }
+  });
 
   $("input[value='Front Embroidery']").click(function() {
     $(".ecom-modal").show();
