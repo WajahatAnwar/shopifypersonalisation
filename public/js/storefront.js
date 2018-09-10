@@ -13,6 +13,21 @@ var myAppJavaScript = function($) {
   $("body").append(
     "<p>Your app is using jQuery version " + $.fn.jquery + "</p>"
   );
+  $(".front-embroidery").hide();
+  $(".back-embroidery").hide();
+  $(".front-back-embroidery").hide();
+
+  var type = $("#personlize_select option:selected").text();
+
+  if (type === "Front Embroidery") {
+    $("input[value='Front Embroidery']").trigger("click");
+  }
+  if (type === "Back Embroidery") {
+    $("input[value='Back Embroidery']").trigger("click");
+  }
+  if (type === "Front & Back Embroidery") {
+    $("input[value='Front & Back Embroidery']").trigger("click");
+  }
 
   $("input[value='Front Embroidery']").click(function() {
     $(".ecom-modal").show();
