@@ -22,6 +22,8 @@ var myAppJavaScript = function($) {
 
   $("#personlize_selection").click(function() {
     $(".ecom-modal").show();
+    var price = $(".price-item--regular").text();
+    $(".changing_price").text(price);
   });
 
   $("#personlize_select").on("change", function() {
@@ -54,6 +56,9 @@ var myAppJavaScript = function($) {
     $("#embroidery_text_back_second").hide();
 
     $(".show_select").show();
+
+    var price = $(".price-item--regular").text();
+    $(".changing_price").text(price);
   });
 
   $("input[value='Back Embroidery']").click(function() {
@@ -70,6 +75,9 @@ var myAppJavaScript = function($) {
     $("#embroidery_text_back_second").show();
 
     $(".show_select").show();
+
+    var price = $(".price-item--regular").text();
+    $(".changing_price").text(price);
   });
 
   $("input[value='Front & Back Embroidery']").click(function() {
@@ -86,6 +94,9 @@ var myAppJavaScript = function($) {
     $("#embroidery_text_back").hide();
 
     $(".show_select").show();
+
+    var price = $(".price-item--regular").text();
+    $(".changing_price").text(price);
   });
 
   $("#ecom-modal__btn-close").click(function() {
