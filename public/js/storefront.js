@@ -83,10 +83,13 @@ var myAppJavaScript = function($) {
       $("#second_back_embroidery").val("");
       $("input[name=second_back_only]").val("");
       $("input[value='Double Front Embroidery']").trigger("click");
+      $("#embroidery_text_front_second").show();
+      $("#embroidery_text_front_second").val(value);
     } else {
       $("input[value='Front Embroidery']").trigger("click");
       $("#second_front_embroidery").val("");
       $("#second_back_embroidery").val("");
+      $("#embroidery_text_front_second").hide();
     }
   });
 
@@ -97,10 +100,13 @@ var myAppJavaScript = function($) {
       $("#second_front_embroidery").val("");
       $("input[name=second_front_only]").val("");
       $("input[value='Double Back Embroidery']").trigger("click");
+      $("#embroidery_text_back_second").show();
+      $("#embroidery_text_back_second").val(value);
     } else {
       $("input[value='Back Embroidery']").trigger("click");
       $("#second_front_embroidery").val("");
       $("#second_back_embroidery").val("");
+      $("#embroidery_text_back_second").hide();
     }
   });
 
