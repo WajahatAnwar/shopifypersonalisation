@@ -101,11 +101,17 @@ var myAppJavaScript = function($) {
       $("input[value='Double Front Embroidery']").trigger("click");
       $("#embroidery_text_front_second").show();
       $("#embroidery_text_front_second").text(value);
+
+      var price = $(".price-item").text();
+      $(".changing_price").text(price);
     } else {
       $("input[value='Front Embroidery']").trigger("click");
       $("#second_front_embroidery").val("");
       $("#second_back_embroidery").val("");
       $("#embroidery_text_front_second").hide();
+
+      var price = $(".price-item").text();
+      $(".changing_price").text(price);
     }
   });
 
@@ -118,11 +124,17 @@ var myAppJavaScript = function($) {
       $("input[value='Double Back Embroidery']").trigger("click");
       $("#embroidery_text_back_second").show();
       $("#embroidery_text_back_second").text(value);
+
+      var price = $(".price-item").text();
+      $(".changing_price").text(price);
     } else {
       $("input[value='Back Embroidery']").trigger("click");
       $("#second_front_embroidery").val("");
       $("#second_back_embroidery").val("");
       $("#embroidery_text_back_second").hide();
+
+      var price = $(".price-item").text();
+      $(".changing_price").text(price);
     }
   });
 
@@ -138,6 +150,9 @@ var myAppJavaScript = function($) {
     $("#back_line_embroidery_both").val("");
 
     $("#embroidery_text_front").text(value);
+
+    var price = $(".price-item").text();
+    $(".changing_price").text(price);
   });
 
   $("input[name=back_only]").change(function() {
@@ -152,6 +167,9 @@ var myAppJavaScript = function($) {
     $("#back_line_embroidery_both").val("");
 
     $("#embroidery_text_back").text(value);
+
+    var price = $(".price-item").text();
+    $(".changing_price").text(price);
   });
 
   $("input[name=front_both]").change(function() {
@@ -163,6 +181,9 @@ var myAppJavaScript = function($) {
 
     $("#front_line_embroidery").val("");
     $("#back_line_embroidery").val("");
+
+    var price = $(".price-item").text();
+    $(".changing_price").text(price);
   });
 
   $("input[name=back_both]").change(function() {
@@ -174,6 +195,9 @@ var myAppJavaScript = function($) {
 
     $("#front_line_embroidery").val("");
     $("#back_line_embroidery").val("");
+
+    var price = $(".price-item").text();
+    $(".changing_price").text(price);
   });
 
   $(".add_to_cart_custom_button").click(function() {
