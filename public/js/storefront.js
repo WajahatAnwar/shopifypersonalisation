@@ -20,6 +20,10 @@ var myAppJavaScript = function($) {
   $(".double-front-embroidery").hide();
   $(".double-back-embroidery").hide();
 
+  $("#personlize_selection").click(function() {
+    $(".ecom-modal").show();
+  });
+
   $("#personlize_select").on("change", function() {
     var type = $("#personlize_select")
       .find(":selected")
@@ -74,7 +78,7 @@ var myAppJavaScript = function($) {
 
     $("#embroidery_text_front").show();
     $(".embroidery_text_front_second").hide();
-    $(".embroidery_text_back_second").hide();
+    $(".embroidery_text__second").hide();
     $("#embroidery_text_back").hide();
   });
 
