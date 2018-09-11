@@ -17,6 +17,8 @@ var myAppJavaScript = function($) {
   $(".front-embroidery").hide();
   $(".back-embroidery").hide();
   $(".front-back-embroidery").hide();
+  $(".double-front-embroidery").hide();
+  $(".double-back-embroidery").hide();
 
   $("#personlize_select").on("change", function() {
     var type = $("#personlize_select")
