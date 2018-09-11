@@ -52,6 +52,8 @@ var myAppJavaScript = function($) {
     $("#embroidery_text_back").hide();
     $("#embroidery_text_front_second").show();
     $("#embroidery_text_back_second").hide();
+
+    $(".show_select").show();
   });
 
   $("input[value='Back Embroidery']").click(function() {
@@ -66,6 +68,8 @@ var myAppJavaScript = function($) {
     $("#embroidery_text_back").show();
     $("#embroidery_text_front_second").hide();
     $("#embroidery_text_back_second").show();
+
+    $(".show_select").show();
   });
 
   $("input[value='Front & Back Embroidery']").click(function() {
@@ -78,8 +82,11 @@ var myAppJavaScript = function($) {
 
     $("#embroidery_text_front").show();
     $(".embroidery_text_front_second").hide();
+    $(".embroidery_text_back_second").hide();
     $(".embroidery_text__second").hide();
     $("#embroidery_text_back").hide();
+
+    $(".show_select").show();
   });
 
   $("#ecom-modal__btn-close").click(function() {
