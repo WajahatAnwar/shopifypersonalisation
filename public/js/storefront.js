@@ -74,6 +74,34 @@ var myAppJavaScript = function($) {
     $(".ecom-modal").hide();
   });
 
+  $("input[name=second_front_only]").on("change", function() {
+    var value = $(this).val();
+    if (value !== "") {
+      $("#second_front_embroidery").val(value);
+      $("#second_back_embroidery").val("");
+      $("input[name=second_back_only]").val("");
+      $("input[value='Double Front Embroidery']").trigger("click");
+    } else {
+      $("input[value='Front Embroidery']").trigger("click");
+      $("#second_front_embroidery").val("");
+      $("#second_back_embroidery").val("");
+    }
+  });
+
+  $("input[name=second_back_only]").on("change", function() {
+    var value = $(this).val();
+    if (value !== "") {
+      $("#second_back_embroidery").val(value);
+      $("#second_front_embroidery").val("");
+      $("input[name=second_front_only]").val("");
+      $("input[value='Double Back Embroidery']").trigger("click");
+    } else {
+      $("input[value='Back Embroidery']").trigger("click");
+      $("#second_front_embroidery").val("");
+      $("#second_back_embroidery").val("");
+    }
+  });
+
   $("input[name=front_only]").change(function() {
     var value = $("input[name=front_only]").val();
     $("#front_line_embroidery").val(value);
