@@ -178,7 +178,7 @@ class ShopifyController extends Controller
 		$shopUrl = session('myshopifyDomain');
 		$accessToken = session('accessToken');
 		$shopifyId = session('shopifyId');
-dd($shopUrl );
+
 		$data3 = $this->shopify->setShopUrl($shopUrl)
 				   ->setAccessToken($accessToken)
 				   ->delete("/admin/products/".$product_id."/metafields/".$meta_id.".json");
