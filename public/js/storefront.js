@@ -22,6 +22,18 @@ var myAppJavaScript = function($) {
   $("input[name=second_front_only]").hide();
   $("input[name=second_back_only]").hide();
 
+  var meta_front_back = $("#front_back_key").val();
+  var meta_front = $("#front_key").val();
+  var meta_back = $("#back_key").val();
+
+  if(meta_front_back !==""){
+    $("option[value=front_back_embroidery]").hide();
+  }else if(meta_front !==""){
+    $("option[value=front_embroidery]").hide();
+  }else if(meta_back !==""){
+    $("option[value=back_embroidery]").hide();
+  }
+
   $("#personlize_selection").click(function() {
     $(".ecom-modal").show();
     var price = $(".price-item--regular").text();
