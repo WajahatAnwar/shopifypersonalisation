@@ -132,12 +132,40 @@ class ShopifyController extends Controller
 		$shopify_store_id = $_POST['shopify_store_id'];
 
 		$meta_key_value = $_POST['type_option'];
-		$postData = [
-			"namespace" => "disable_robe_key",
-			"key" => "disable_robe_key",
-			"value" => $meta_key_value,
-			"value_type" => "string"
-		];
+		if($meta_key_value == "front_embroidery")
+		{
+			$postData = [
+				"namespace" => "disable_robe_key",
+				"key" => "front_key",
+				"value" => $meta_key_value,
+				"value_type" => "string"
+			];
+		}else if($meta_key_value == "back_embroidery")
+		{
+			$postData = [
+				"namespace" => "disable_robe_key",
+				"key" => "back_key",
+				"value" => $meta_key_value,
+				"value_type" => "string"
+			];
+		}else if($meta_key_value == "front_back_embroidery")
+		{
+			$postData = [
+				"namespace" => "disable_robe_key",
+				"key" => "front_back_key",
+				"value" => $meta_key_value,
+				"value_type" => "string"
+			];
+		}else if($meta_key_value == "second_front_back_embroidery")
+		{
+			$postData = [
+				"namespace" => "disable_robe_key",
+				"key" => "second_front_back_key",
+				"value" => $meta_key_value,
+				"value_type" => "string"
+			];
+		}
+
 		$data = $this->shopify->setShopUrl(session('myshopifyDomain'))
 				 ->setAccessToken(session('accessToken'))
 				 ->post("/admin/products/".$product_id."/metafields.json", [ 'metafield' => $postData ]);
