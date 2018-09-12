@@ -116,6 +116,53 @@ class ShopifyController extends Controller
 				return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, 'success' => '1']);
 	}
 
+	public function save_disable_key()
+	{
+		$product_ids = $_POST['trigger_product'];
+		$dash_pos = strpos($product_ids, "-");
+		$product_id = substr($product_ids, 0, $dash_pos);
+		$product_name = substr($product_ids, $dash_pos+1);
+
+		$disable_key = $_POST['type_option'];
+		$shopify_store_id = $_POST['shopify_store_id'];
+
+		$meta_key_value = $_POST['type_option'];
+		$postData = [
+			"namespace" => "disable_robe_key",
+			"key" => "disable_robe_key",
+			"value" => $meta_key_value,
+			"value_type" => "string"
+		];
+		$data = $this->shopify->setShopUrl(session('myshopifyDomain'))
+				 ->setAccessToken(session('accessToken'))
+				 ->post("/admin/products/".$product_id."/metafields.json", [ 'metafield' => $postData ]);
+
+		$disable_option_key = DB::Table('product_disable_key')->where('product_id', $product_id )->where('disable_key', $disable_key)->first();
+		if(empty($disable_option_key))
+		{
+			$id = DB::table('product_disable_key')->insertGetId([
+				'shopify_store_id' => $shopify_store_id,
+				'product_id' => $product_id, 
+				'product_name' => $product_name,
+				'disable_key' => $disable_key, 
+				'meta_field_id' => $data['id'], 
+				'created_at'=> date('Y-m-d H:i:s'), 
+				'updated_at'=> date('Y-m-d H:i:s')
+			]);
+		}else{
+			DB::table('product_disable_key')->where('product_id', $product_id)->update([
+				'meta_field_id' => $data['id'], 
+				'updated_at' => date('Y-m-d H:i:s')]);
+		}
+
+		$shopUrl= session('myshopifyDomain');
+		$shop = Shop::where('myshopify_domain' , $shopUrl)->first();
+		$shopProducts = $this->shopify->setShopUrl($shop->myshopify_domain)
+					->setAccessToken($shop->access_token)
+					->get('admin/products.json',[ 'limit' => 250 , 'page' => 1 ]);
+		return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key,'success' => '1']);
+	}
+
 	//This function include our custom template in the product.liquid.
 	// Two function include_template_files and update_template_file
 	// Are responsible for appending this code to product.liquid
@@ -140,12 +187,12 @@ class ShopifyController extends Controller
 								->setAccessToken($accessToken)
 								->get("/admin/themes/".$theme_id."/assets.json", ["asset[key]" => "$template_name", "theme_id" => $theme_id]);
 		$view = $server_template['value'];
-		$view .= "{% include 'ecom-popup' %}{% assign event_identifier = product.metafields.event_identify %}
-		<input type='hidden' value='{{ event_identifier['event'] }}' id='event_identifier' class='event_identifier' />
+		$view .= "{% include 'personalisation-popup' %}{% assign event_identifier = product.metafields.disable_robe_key %}
+		<input type='hidden' value='{{ disable_robe_key['disable_robe_key'] }}' id='disable_robe_key' class='disable_robe_key' />
 
 		<input type='hidden' value='{{ product.variants.first.id }}' id='product_id' class='product' />
 		<input type='hidden' value='{{ product.id }}' id='product_id_real' class='product' />
-		<p id='demo1'></p>";
+		<input type='hidden' value='{{ product.title }}' id='product_name' class='product' />";
 		
 		$this->update_templete_files($view,$shopUrl,$accessToken,$theme_id);
 	}
@@ -1211,76 +1258,193 @@ class ShopifyController extends Controller
 		  font-size: 30px;
 	  }
 	  
+  	ul.list_fonts{
+      background: #fff;
+      border: solid 1px #eaeaea;
+      width: 340px;
+      padding: 5px;
+      margin: 0px;
+      display: none;
+      text-align: left;
+    }
+	ul.list_fonts li{list-style:none;font-size:14px;cursor:pointer;}
+	#display_fonts{
+      background: #fff;
+      border: solid 1px #eaeaea;
+      width: 340px;
+      padding: 5px;
+      margin: 0px;
+      cursor: pointer;
+      text-align: left;
+      
+    }
 	  
 	  </style>
 	<div id='ecom-upsell-modal-window'>
-	   <div id='ecom-modal' class='ecom-modal ecom-modal--animated'>
+	   <div id='ecom-modal' class='ecom-modal ecom-modal--' >
 		  <div id='ecom-modal__window' class='ecom-modal__window'>
 			 <div id='ecom-modal-first__window' style=''>
-				<a id='ecom-modal__btn-close' class='ecom-modal__btn ecom-modal__btn-close'>x</a>
-				<div id='ecom-modal__content' class='ecom-modal__content ecom-upsell'>
-				   
-				   <div class='ecom-upsell__triger-product-container'>
-					  <div class='ecom-upsell__triger-image-container' style='background: url(https://cdn.shopify.com/s/files/1/0062/9817/3498/products/camper-car-fir-trees-24698.jpg?v=1527281716);background-size: contain;background-repeat: no-repeat;background-position: center; width:85px; height:85px;'>
-					  </div>
-					  <div class='ecom-product__info'>
-						 <div class='ecom-product__quantity'>You added 1</div>
-						 <div class='ecom-product__title'>T-Shirt</div>
-						 <div class='ecom-product__variant'></div>
-						 <div class='ecom-product__pricing' style='height: 29px;'>
-							<div class='ecom-product__price'><del class='ecom-product__price--deleted money'></del></div>
-							<div class='ecom-product__price money'>Rs.1,213.00</div>
-						 </div>
-					  </div>
-				   </div>
-				   <div class='ecom-modal__slider'>
-					  <div id='product_list' class='ecom-grid ecom-upsell__products-list'>
-						 <article id='prod_id_1329330913338_0' class='ecom-product ecom-grid offer_id_218652' data-ecom-component-id='upsell_for-upsell'>
-							<div class='ecom-product__image-container ecom-grid__column ecom-grid__column--half'>
-							   <img src='//upsells.ecomapps.net/assets/no-image.png' alt='' class='ecom-product__image'>
-							</div>
-							<div class='ecom-product__details ecom-grid__column ecom-grid__column--half'>
-							   <div class='ecom-product__info'>
-								  <div class='ecom-product__title' style='font-size: 26px; height: 22px;'>For upsell</div>
-							   </div>
-							   <div class='qty_container' style='height: 0px;'>
-								  <div class='ecom-control-group__item ecom-product__quantity qty_input_container' style='display:none;'>
-									 <label class='ecom-product__control-label' for='qty_input' title='Quantity'>Qty :</label>
-									 <input type='number' class='ecom-product__control ecom-product__quantity-field qty_input' value='1' min='1'>
-								  </div>
-							   </div>
-							   <div class='ecom-product__pricing' style='height: 29px;'>
-								  <div class='ecom-product__price'><del class='ecom-product__price--deleted money'>Rs.1,560.00</del></div>
-								  <div class='ecom-product__price current_price money'>Rs.0.00</div>
-								  <div class='ecom-product__message limit_disclaimer' style='color: red;'>Limited Time Offer</div>
-							   </div>
-                              <div class='ecom-upsell__intro1'>
-                                <p id='demo'></p>
-							  </div>
-							  <div class='ecom-upsell__intro1'>
-                                <p>Available Stock: <span class='fake_stock'></span></p>
-                              </div>
-							   <div class='ecom-product__actions ecom-product-options__actions' style='display: none;'>
-								  <a href='#add-to-cart' class='ecom_options_btn ecom-product__control ecom-product__button ecom-product__button--primary'>Customize and Add to Cart</a>
-							   </div>
-							   <div class='ecom-product__actions ecom-product-upsell__actions'>
-								  <a href='#add-to-cart' data-ecom-component-id='' class='add-to-cart ecom-product__control ecom-product__button ecom-product__button--primary standard_primary' added='false'>Take This Offer</a>
-							   </div>
-							</div>
-						 </article>
-					  </div>
-				   </div>
-				</div>
-				<div class='ecom-modal__footer ecom-upsell__actions'>
-				   <a href='#' class='ecom-upsell__button ecom-upsell__button--secondary' data-ecom-component-id='upsell_no_thanks'>No Thanks</a>
-				   <a href='#' class='ecom-upsell__button ecom-upsell__button--primary' data-ecom-component-id='upsell_continue'>Continue Without Offer</a>
+               <h4 style='text-align: center;'>We embroider exactly you entered including punctuation</h4>
+				<a id='ecom-modal__btn-close' class='ecom-modal__btn ecom-modal__btn-close' aria-describedby='a11y-external-message'>x</a>
+               
+			   <p id='embroidery_text_front' style='display: none;position: absolute;top: 185px;left: 204px;z-index: 9999;'>Texting 1</p>
+               <p id='embroidery_text_front_second' style='display: none;position: absolute;top: 200px;left: 204px;z-index: 9999;'>Texting 1</p>
+               
+               
+               <p id='embroidery_text_back' style='display: none;position: absolute;top: 185px;left: 204px;z-index: 9999;'>Texting 1</p>
+               <p id='embroidery_text_back_second' style='display: none;position: absolute;top: 200px;left: 204px;z-index: 9999;'>Texting 1</p>
+				
+               <div class='ecom-modal__footer ecom-upsell__actions' style='background-color: #fff;'>
+                 
+                <div class='col-md-6'>
+                    <img id='custom_image_front' style='display:none;' src='https://cdn.shopify.com/s/files/1/0067/6941/0113/products/Hooded_Kids_PURPLEs_Robe_1024x1024@2x.jpg?v=1536049876'>
+                  <img id='custom_image_back' style='display:none;' src='https://cdn.shopify.com/s/files/1/0067/6941/0113/products/Hooded_Kids_PURPLEs_Robe_1024x1024@2x.jpg?v=1536049876'>
+                </div>
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <h4 class='changing_price' style='display:none;'>Rs: 15.00</h4>
+                    <label class='form-group'>Select Embroidery Type</label>
+                    <select id='personlize_select' class='form-control' style='height:50px;'>
+                      <option disabled selected>Personalize</option>
+                      <option value='front_embroidery'>Front Embroidery</option>
+                      <option value='back_embroidery'>Back Embroidery</option>
+                      <option value='front_back_embroidery'>Front & Back Embroidery</option>
+                    </select>
+                  </div>
+                 </div>
+                <div class='col-md-6 front_embroidery' style='display:none;'>
+<!--                   <h2>Front Embroidery</h2> -->
+    			  <br>
+                  <div class='form-group'>
+                    <input type='text' maxlength='11' name='front_only' class='form-control' id='from_embroidery' placeholder='Enter Text for Front Embroidery (+$7.95)'>
+                  </div>
+                  <div class='form-group'>
+                    <input type='text' maxlength='11' name='second_front_only' class='form-control' id='from_second_embroidery' placeholder='Enter Text for Second Front Embroidery (+$4)'>
+                  </div>
+                </div>  
+
+                <div class='col-md-6 back_embroidery' style='display:none;'>
+<!--                   <h2>Back Embroidery</h2> -->
+    			  <br>
+                  <div class='form-group'>
+                    <input type='text' maxlength='11' name='back_only' class='form-control' id='from_back_embroidery' placeholder='Enter Text for Back Embroidery (+$12.95)'>
+                  </div>
+                  <div class='form-group'>
+                    <input type='text' maxlength='11' name='second_back_only' class='form-control' id='from_second_back_embroidery' placeholder='Enter Text for Second Back Embroidery (+$6.00)'>
+                  </div>
+                </div>
+                  
+                <div class='col-md-6 front_back_embroidery' style='display:none;'>
+<!--                   <h2>Front & Back Embroidery</h2> -->
+    			  <br>
+                  <div class='form-group'>
+                    <input type='text' maxlength='11' name='front_both' class='form-control' id='from_front2_embroidery' placeholder='Enter Text for Front Embroidery'>
+                  </div>
+                  <div class='form-group'>
+                    <input type='text' maxlength='11' name='back_both' class='form-control' id='from_back2_embroidery' placeholder='Enter Text for Back Embroidery'>
+                  </div>
+                </div>
+                  <div class='col-md-6' style='display:none'>
+                    <div class='form-group'>
+                      <input type='text' name='color' id='color_of_embroidery' class='form-control' placeholder='Choose Text Color'>
+                    </div>
+                  </div>
+                 <div class='col-md-6 show_select' style='display:none'>
+                   <div class='form-group'>
+                     <label class='form-group'>Select Font Style:</label>
+                   		{% include 'swatch-lip' with 'Ivory, Pink, Blue, Olive, black.png' %}
+                   </div>
+                 </div>
+                  <div class='col-md-6 show_select' style='display:none'>
+                    <div class='form-group'>
+                    	  <ul id='display_fonts'></ul>
+                          <ul class='list_fonts'>
+                            <li style='font-family:Arial'>Arial</li>
+                            <li style='font-family:Verdana'>Verdana</li>
+                            <li style='font-family:Fearless'>Fearless</li>
+                            <li style='font-family:Anton'>Anton</li>
+                            <li style='font-family:Baloo Tammudu'>Baloo Tammudu</li>
+                            <li style='font-family:Dancing Script'>Dancing Script</li>
+                            <li style='font-family:Fjalla One'>Fjalla One</li>
+                            <li style='font-family:Gamja Flower'>Gamja Flower</li>
+                            <li style='font-family:Lato'>Lato</li>
+                            <li style='font-family:Lobster'>Lobster</li>
+                            <li style='font-family:Montserrat'>Montserrat</li>
+                            <li style='font-family:Mukta'>Mukta</li>
+                            <li style='font-family:Noto Serif+JP'>Noto Serif JP</li>
+                            <li style='font-family:Open Sans'>Open Sans</li>
+                            <li style='font-family:Oswald'>Oswald</li>
+                            <li style='font-family:Roboto'>Roboto</li>
+                            <li style='font-family:Roboto Condensed'>Roboto Condensed</li>
+                            <li style='font-family:Ruslan Display'>Ruslan Display</li>
+                            <li style='font-family:Shadows Into Light'>Shadows Into Light</li>
+                            <li style='font-family:Source Sans Pro'>Source Sans+Pro</li>
+                          </ul>
+                    </div>
+                  </div>
+                  <button type='button' style='display:none' class='btn btn-light Custom add_to_cart_custom_button show_select' >Add to Cart</button>
+                  
 				</div>
 			 </div>
-			 <div id='ecom-modal-second__window' style='display:none'>
-			 </div>
+			 
 		  </div>
 	   </div>
-	</div>";
+	</div>
+<script>
+  $(document).ready(function(){
+    
+    var horizantal_pos = $('#top_pos');
+    var vertical_pos = $('#left_pos');
+    var size_width = $('#size_width');
+    
+    horizantal_pos.on('change', function(pos){
+      pos = horizantal_pos.val();
+    	$('#embroidery_text_front').css('top', pos+'px');
+        $('#embroidery_text_back').css('top', pos+'px');
+    });
+    
+    vertical_pos.on('change', function(pos){
+      pos = vertical_pos.val();
+    	$('#embroidery_text_front').css('left', pos+'px');
+      $('#embroidery_text_back').css('left', pos+'px');
+    });
+    
+    size_width.on('change', function(pos){
+      pos = size_width.val();
+    	$('#embroidery_text_front').css('width', pos+'px');
+      $('#embroidery_text_back').css('width', pos+'px');
+    });
+    
+    $('ul.list_fonts li:first').clone().appendTo('#display_fonts');
+  
+    $('ul.list_fonts li').on('click',function(){
+      $('#display_fonts').html('');
+      $(this).clone().appendTo('#display_fonts');
+      var font_family = $(this).text();
+      $('#embroidery_text_front').css('font-family',font_family); 
+      $('#embroidery_text_back').css('font-family',font_family);
+      $('#font_of_embroidery').val(font_family);
+      $('ul.list_fonts').slideUp();   
+    });
+    
+    $('#display_fonts').click(function(){
+    	$('ul.list_fonts').slideToggle();
+    });
+    
+    $('.custom_color_awatch').click(function(){
+    	var color = $(this).val();
+      	$('#embroidery_text_front').css('color', color);
+        $('#embroidery_text_back').css('color', color);
+      
+      	$('#embroidery_text_front_second').css('color', color);
+        $('#embroidery_text_back_second').css('color', color);
+      
+        $('#color_of_embroidery').val(color);
+    });
+
+    
+  });
+</script>";
         $postData = [
                             "key" => "snippets/personalisation-popup.liquid",
                             "value" => $view
