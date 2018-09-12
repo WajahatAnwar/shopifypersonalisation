@@ -36,21 +36,20 @@ var myAppJavaScript = function($) {
     $("option[value=back_embroidery]").hide();
   }
 
-  if(! $('input[name=wrap_checkbox]:checked').length > 0)
-  {
+  if (!$("input[name=wrap_checkbox]:checked").length > 0) {
     $("#embroidery_text_front_second").hide();
     $("#embroidery_text_back_second").hide();
 
     $("#embroidery_text_front").css("top", "505px");
     $("#embroidery_text_back").css("top", "505px");
   }
-  $(".spa_wraps").
-
-  $("#personlize_selection").click(function() {
-    $(".ecom-modal").show();
-    var price = $(".price-item--regular").text();
-    $(".changing_price").text(price);
-  });
+  $(".spa_wraps")
+    .$("#personlize_selection")
+    .click(function() {
+      $(".ecom-modal").show();
+      var price = $(".price-item--regular").text();
+      $(".changing_price").text(price);
+    });
 
   $("#personlize_select").on("change", function() {
     var type = $("#personlize_select")
