@@ -36,7 +36,7 @@ var myAppJavaScript = function($) {
     $("option[value=back_embroidery]").hide();
   }
 
-  if ('input[name="checkBoxName"]'.is(":checked")) {
+  if ($('input[name="checkBoxName"]').is(":checked")) {
     $("#embroidery_text_front_second").hide();
     $("#embroidery_text_back_second").hide();
 
