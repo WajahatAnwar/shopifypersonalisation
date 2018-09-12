@@ -60,7 +60,6 @@
 		<section id="">
 		<aside>
   			<h2>Disable the key on product</h2>
-			<p>This is the list of product on which you disabled certain keys.</p>
 		</aside>
 		<article>
 			<div class="card">
