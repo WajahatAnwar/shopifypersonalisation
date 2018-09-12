@@ -35,7 +35,7 @@ class ShopifyController extends Controller
 				$shopProducts = $this->shopify->setShopUrl($shop->myshopify_domain)
 				->setAccessToken($shop->access_token)
 				->get('admin/products.json',[ 'limit' => 250 , 'page' => 1 ]);
-	return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key,'success' => '2']);
+	return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, "shop_products" => $shopProducts,'success' => '2']);
 
     		}
     		else{
