@@ -88,7 +88,7 @@
 									<td>{{ $disable_key->product_id }}</td>
 									<td>{{ $disable_key->product_name }}</td>
 									<td>{{ $disable_key->disable_key }}</td>
-									<td><a href="https://shopify.dmca.com/delete_offer?meta_id={{ $disable_key->meta_field_id }}&product_id={{ $disable_key->product_id }}" class="button secondary icon-trash"></a></td>
+									<td><a href="https://app.robesale.com/delete_offer?meta_id={{ $disable_key->meta_field_id }}&product_id={{ $disable_key->product_id }}" class="button secondary icon-trash"></a></td>
 								</tr>
 							@endforeach
 						@endif
