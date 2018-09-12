@@ -35,20 +35,21 @@ var myAppJavaScript = function($) {
   if (meta_back !== "") {
     $("option[value=back_embroidery]").hide();
   }
+  $('input[name="wrap_checkbox"]').on("change", function() {
+    if ($('input[name="wrap_checkbox"]:checked')) {
+      $("#embroidery_text_front_second").hide();
+      $("#embroidery_text_back_second").hide();
 
-  if ($('input[name="checkBoxName"]:checked')) {
-    $("#embroidery_text_front_second").hide();
-    $("#embroidery_text_back_second").hide();
+      $("#embroidery_text_front").css("top", "505px");
+      $("#embroidery_text_back").css("top", "505px");
+    } else {
+      $("#embroidery_text_front_second").show();
+      $("#embroidery_text_back_second").show();
 
-    $("#embroidery_text_front").css("top", "505px");
-    $("#embroidery_text_back").css("top", "505px");
-  } else {
-    $("#embroidery_text_front_second").show();
-    $("#embroidery_text_back_second").show();
-
-    $("#embroidery_text_front").css("top", "225px");
-    $("#embroidery_text_back").css("top", "225px");
-  }
+      $("#embroidery_text_front").css("top", "225px");
+      $("#embroidery_text_back").css("top", "225px");
+    }
+  });
 
   $("#personlize_selection").click(function() {
     $(".ecom-modal").show();
