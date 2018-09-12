@@ -56,5 +56,45 @@
 			</div>
 		</article>
 	</section>
+
+		<section id="">
+		<aside>
+  			<h2>Turn Off Right Click Prevention</h2>
+			<p>Click on Delete button to OFF the right click prevention</p>
+		</aside>
+		<article>
+			<div class="card">
+				@if($success == "4")
+				<div class="alert success">
+					<dl>
+						<dt>Deleted Successfully</dt>
+						<dd>Right Click Prevention is Deleted From This Product</dd>
+					</dl>
+				</div>
+				@endif
+				<h5>Turn Off Right Click Prevention</h5>
+				<table>
+					<thead>
+						<tr>
+						<th>Product Id</th>
+						<th>Product Name</th>
+						<th>Disabled Key</th>
+						</tr>
+					</thead>
+					<tbody>
+						@if(!empty($product_disable_key))
+							@foreach ($product_disable_key as $disable_key)
+								<tr>
+									<td>{{ $disable_key->product_id }}</td>
+									<td>{{ $disable_key->product_name }}</td>
+									<td>{{ $disable_key->disable_key }}</td>
+								</tr>
+							@endforeach
+						@endif
+					</tbody>
+				</table>
+			</div>
+		</article>
+	</section>
 	
 @endsection
