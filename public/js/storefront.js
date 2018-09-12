@@ -36,12 +36,18 @@ var myAppJavaScript = function($) {
     $("option[value=back_embroidery]").hide();
   }
 
-  if (!$("input[name=wrap_checkbox]:checked").length > 0) {
+  if ('input[name="checkBoxName"]'.is(":checked")) {
     $("#embroidery_text_front_second").hide();
     $("#embroidery_text_back_second").hide();
 
     $("#embroidery_text_front").css("top", "505px");
     $("#embroidery_text_back").css("top", "505px");
+  } else {
+    $("#embroidery_text_front_second").show();
+    $("#embroidery_text_back_second").show();
+
+    $("#embroidery_text_front").css("top", "225px");
+    $("#embroidery_text_back").css("top", "225px");
   }
 
   $("#personlize_selection").click(function() {
