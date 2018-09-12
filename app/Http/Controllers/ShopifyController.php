@@ -184,7 +184,7 @@ class ShopifyController extends Controller
 				   ->delete("/admin/products/".$product_id."/metafields/".$meta_id.".json");
 		if($data3)
 		{
-			$deleting = DB::table('dmca_meta_fields')->where('shop_id', $shopifyId )
+			$deleting = DB::table('product_disable_key')->where('shop_id', $shopifyId )
 			->where('meta_field_id', $meta_id)->delete();
 		}
 		
