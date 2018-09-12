@@ -181,7 +181,8 @@ class ShopifyController extends Controller
 
 		$data3 = $this->shopify->setShopUrl($shopUrl)
 				   ->setAccessToken($accessToken)
-				   ->delete("/admin/products/".$product_id."/metafields/".$meta_id.".json");
+					 ->delete("/admin/products/".$product_id."/metafields/".$meta_id.".json");
+					 dd($data3);
 		if($data3)
 		{
 			$deleting = DB::table('product_disable_key')->where('shopify_store_id', $shopifyId )
