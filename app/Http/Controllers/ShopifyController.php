@@ -32,7 +32,11 @@ class ShopifyController extends Controller
     					'accessToken' => $shop->access_token
 					]);
 				$this->create_template();
-    			return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, 'success' => '2']);
+				$shopProducts = $this->shopify->setShopUrl($shop->myshopify_domain)
+				->setAccessToken($shop->access_token)
+				->get('admin/products.json',[ 'limit' => 250 , 'page' => 1 ]);
+	return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key,'success' => '2']);
+
     		}
     		else{
     			$shopify = $this->shopify->setShopUrl($shopUrl);
