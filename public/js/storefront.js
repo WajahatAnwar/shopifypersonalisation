@@ -28,9 +28,11 @@ var myAppJavaScript = function($) {
 
   if (meta_front_back !== "") {
     $("option[value=front_back_embroidery]").hide();
-  } else if (meta_front !== "") {
+  }
+  if (meta_front !== "") {
     $("option[value=front_embroidery]").hide();
-  } else if (meta_back !== "") {
+  }
+  if (meta_back !== "") {
     $("option[value=back_embroidery]").hide();
   }
 
