@@ -9,15 +9,15 @@
 	<section>
 		<aside>
 			<h2>Options</h2>
-			<p>From these options you can set the name of the Add-to-Cart button, Color of the Add-to-Cart button, Change the badges tag line and much more</p>
+			<p>From here you can select a Product and type of the key you want to disable on the certain product.</p>
 		</aside>
 		<article>
 			<div class="card">
 				@if($success == 1)
 				<div class="alert success">
 					<dl>
-						<dt>Switch Off Options</dt>
-						<dd>Select and Product then select option you want to turn off.</dd>
+						<dt>Key Disabled</dt>
+						<dd>Key is successfully Disabled.</dd>
 					</dl>
 				</div>
 				@endif
@@ -25,7 +25,7 @@
 					@csrf
 					<div>
 						<div class="" style="background-color: #5e8f3f;">
-							<h2 style="color: #ffffff;padding: 21px;">Set License Key For Product</h2>
+							<h2 style="color: #ffffff;padding: 21px;">Set Disable Key For Product</h2>
 						</div>
 						<input type="hidden" name="shopify_store_id" value="{{Session('shopifyId')}}">
 						<div class="row">
@@ -39,7 +39,7 @@
 							</select>
 						</div>
 						<div class="row">
-							<label>License key</label>
+							<label>Disable Key Type</label>
 							<select name="type_option" id="type_option">
 								<option value="front_embroidery">Front Embroidery</option>
 								<option value="back_embroidery">Back Embroidery</option>
@@ -59,8 +59,8 @@
 
 		<section id="">
 		<aside>
-  			<h2>Turn Off Right Click Prevention</h2>
-			<p>Click on Delete button to OFF the right click prevention</p>
+  			<h2>Disable the key on product</h2>
+			<p>This is the list of product on which you disabled certain keys.</p>
 		</aside>
 		<article>
 			<div class="card">
@@ -72,7 +72,7 @@
 					</dl>
 				</div>
 				@endif
-				<h5>Turn Off Right Click Prevention</h5>
+				<h5>Disable the key on product</h5>
 				<table>
 					<thead>
 						<tr>
@@ -88,6 +88,7 @@
 									<td>{{ $disable_key->product_id }}</td>
 									<td>{{ $disable_key->product_name }}</td>
 									<td>{{ $disable_key->disable_key }}</td>
+									<td><a href="https://shopify.dmca.com/delete_offer?meta_id={{ $disable_key->meta_field_id }}&product_id={{ $disable_key->product_id }}" class="button secondary icon-trash"></a></td>
 								</tr>
 							@endforeach
 						@endif

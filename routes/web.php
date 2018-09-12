@@ -34,3 +34,4 @@ Route::group(['prefix' => 'billing'] , function(){
 });
 Route::post('save_data' , 'ShopifyController@save_data');
 Route::post('save_disable_key' , 'ShopifyController@save_disable_key');
+Route::get('delete_offer' , 'ShopifyController@delete_offer');

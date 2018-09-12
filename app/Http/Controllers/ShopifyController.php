@@ -170,6 +170,27 @@ class ShopifyController extends Controller
 		return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key,'success' => '1']);
 	}
 
+	public function delete_offer()
+	{
+		$meta_id = $_GET['meta_id'];
+		$product_id = $_GET['product_id'];
+
+		$shopUrl = session('myshopifyDomain');
+		$accessToken = session('accessToken');
+		$shopifyId = session('shopifyId');
+
+		$data3 = $this->shopify->setShopUrl($shopUrl)
+				   ->setAccessToken($accessToken)
+				   ->delete("/admin/products/".$product_id."/metafields/".$meta_id.".json");
+		if($data3)
+		{
+			$deleting = DB::table('dmca_meta_fields')->where('shop_id', $shopifyId )
+			->where('meta_field_id', $meta_id)->delete();
+		}
+		
+
+	}
+
 	//This function include our custom template in the product.liquid.
 	// Two function include_template_files and update_template_file
 	// Are responsible for appending this code to product.liquid
