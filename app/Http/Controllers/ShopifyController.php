@@ -192,7 +192,7 @@ class ShopifyController extends Controller
 		$shopProducts = $this->shopify->setShopUrl($shopUrl)
 					->setAccessToken($accessToken)
 					->get('admin/products.json',[ 'limit' => 250 , 'page' => 1 ]);
-		$product_disable_key = DB::Table('product_disable_key')->where('shopify_store_id', $shopify_id )->get();
+		$product_disable_key = DB::Table('product_disable_key')->where('shopify_store_id', $shopifyId )->get();
 		return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key,'success' => '1']);
 
 	}
