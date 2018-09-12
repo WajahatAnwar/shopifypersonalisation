@@ -19,6 +19,8 @@ var myAppJavaScript = function($) {
   $(".front-back-embroidery").hide();
   $(".double-front-embroidery").hide();
   $(".double-back-embroidery").hide();
+  $("input[name=second_front_only]").hide();
+  $("input[name=second_back_only]").hide();
 
   $("#personlize_selection").click(function() {
     $(".ecom-modal").show();
@@ -164,6 +166,12 @@ var myAppJavaScript = function($) {
 
     var price = $(".price-item--regular").text();
     $(".changing_price").text(price);
+
+    if (value !== "") {
+      $("input[name=second_front_only]").show();
+    } else {
+      $("input[name=second_front_only]").hide();
+    }
   });
 
   $("input[name=back_only]").change(function() {
@@ -181,6 +189,12 @@ var myAppJavaScript = function($) {
 
     var price = $(".price-item--regular").text();
     $(".changing_price").text(price);
+
+    if (value !== "") {
+      $("input[name=second_back_only]").show();
+    } else {
+      $("input[name=second_back_only]").hide();
+    }
   });
 
   $("input[name=front_both]").change(function() {
