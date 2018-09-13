@@ -284,6 +284,18 @@ var myAppJavaScript = function($) {
       }
     });
   }
+  $('.custom_font_swatch').click(function(){
+    var font_style = $(this).data('value');
+      alert(font_style);
+      $("#fuck_this_field").val("check");
+
+      $('#embroidery_text_front').css('font-family', font_style);
+      $('#embroidery_text_back').css('font-family', font_style);
+    
+      $('#embroidery_text_front_second').css('font-family', font_style);
+      $('#embroidery_text_back_second').css('font-family', font_style);
+  });
+
 };
 
 if (typeof jQuery === "undefined" || parseFloat(jQuery.fn.jquery) < 1.7) {
