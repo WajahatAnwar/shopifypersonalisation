@@ -152,7 +152,7 @@ class ShopifyController extends Controller
 		{
 			$postData = [
 				"namespace" => "disable_robe_key",
-				"key" => "front_back_key",
+				"key" => "front_back_keys",
 				"value" => $meta_key_value,
 				"value_type" => "string"
 			];

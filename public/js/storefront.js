@@ -81,10 +81,10 @@ var myAppJavaScript = function($) {
     $("#custom_image_front").show();
     $("#custom_image_back").hide();
 
-    $("#embroidery_text_front").show();
-    $("#embroidery_text_back").hide();
-    $("#embroidery_text_front_second").show();
-    $("#embroidery_text_back_second").hide();
+    // $("#embroidery_text_front").show();
+    // $("#embroidery_text_back").hide();
+    // $("#embroidery_text_front_second").show();
+    // $("#embroidery_text_back_second").hide();
 
     $(".show_select").show();
 
@@ -100,10 +100,10 @@ var myAppJavaScript = function($) {
     $("#custom_image_front").hide();
     $("#custom_image_back").show();
 
-    $("#embroidery_text_front").hide();
-    $("#embroidery_text_back").show();
-    $("#embroidery_text_front_second").hide();
-    $("#embroidery_text_back_second").show();
+    // $("#embroidery_text_front").hide();
+    // $("#embroidery_text_back").show();
+    // $("#embroidery_text_front_second").hide();
+    // $("#embroidery_text_back_second").show();
 
     $(".show_select").show();
 
@@ -119,10 +119,10 @@ var myAppJavaScript = function($) {
     $("#custom_image_front").show();
     $("#custom_image_back").hide();
 
-    $("#embroidery_text_front").show();
-    $("#embroidery_text_front_second").hide();
-    $("#embroidery_text_back_second").hide();
-    $("#embroidery_text_back").hide();
+    // $("#embroidery_text_front").show();
+    // $("#embroidery_text_front_second").hide();
+    // $("#embroidery_text_back_second").hide();
+    // $("#embroidery_text_back").hide();
 
     $(".show_select").show();
 
@@ -197,8 +197,10 @@ var myAppJavaScript = function($) {
     $(".changing_price").text(price);
 
     if (value !== "") {
+      $("#embroidery_text_front").show();
       $("input[name=second_front_only]").show();
     } else {
+      $("#embroidery_text_front").hide();
       $("input[name=second_front_only]").hide();
     }
   });
@@ -220,8 +222,10 @@ var myAppJavaScript = function($) {
     $(".changing_price").text(price);
 
     if (value !== "") {
+      $("#embroidery_text_back").show();
       $("input[name=second_back_only]").show();
     } else {
+      $("#embroidery_text_back").hide();
       $("input[name=second_back_only]").hide();
     }
   });
