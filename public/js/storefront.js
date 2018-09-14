@@ -26,6 +26,8 @@ var myAppJavaScript = function($) {
   var meta_front_back = $("#front_back_key").val();
   var meta_front = $("#front_key").val();
   var meta_back = $("#back_key").val();
+  var towel_type = $("#towel_type").val();
+  var wrap_type = $("#wrap_type").val();
 
   if (meta_front_back !== "") {
     $("option[value=front_back_embroidery]").hide();
@@ -36,21 +38,20 @@ var myAppJavaScript = function($) {
   if (meta_back !== "") {
     $("option[value=back_embroidery]").hide();
   }
-  $('input[name="wrap_checkbox"]').on("change", function() {
-    if ($('input[name="wrap_checkbox"]').is(":checked")) {
-      $("#embroidery_text_front_second").hide();
-      $("#embroidery_text_back_second").hide();
 
-      $("#embroidery_text_front").css("top", "505px");
-      $("#embroidery_text_back").css("top", "505px");
-    } else {
-      $("#embroidery_text_front_second").show();
-      $("#embroidery_text_back_second").show();
+  if (towel_type !== "" || wrap_type !== "") {
+    $("#embroidery_text_front_second").hide();
+    $("#embroidery_text_back_second").hide();
 
-      $("#embroidery_text_front").css("top", "225px");
-      $("#embroidery_text_back").css("top", "225px");
-    }
-  });
+    $("#embroidery_text_front").css("top", "505px");
+    $("#embroidery_text_back").css("top", "505px");
+  } else {
+    $("#embroidery_text_front_second").show();
+    $("#embroidery_text_back_second").show();
+
+    $("#embroidery_text_front").css("top", "225px");
+    $("#embroidery_text_back").css("top", "225px");
+  }
 
   $("#personlize_selection").click(function() {
     $(".ecom-modal").show();
