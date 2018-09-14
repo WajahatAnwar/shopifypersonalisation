@@ -164,6 +164,22 @@ class ShopifyController extends Controller
 				"value" => $meta_key_value,
 				"value_type" => "string"
 			];
+		}else if($meta_key_value == "wrap")
+		{
+			$postData = [
+				"namespace" => "disable_robe_key",
+				"key" => "wrap",
+				"value" => $meta_key_value,
+				"value_type" => "string"
+			];
+		}else if($meta_key_value == "towel")
+		{
+			$postData = [
+				"namespace" => "disable_robe_key",
+				"key" => "towel",
+				"value" => $meta_key_value,
+				"value_type" => "string"
+			];
 		}
 
 		$data = $this->shopify->setShopUrl(session('myshopifyDomain'))
