@@ -237,14 +237,15 @@ var myAppJavaScript = function($) {
     $("input[name=front_only]").val("");
     $("input[name=back_only]").val("");
 
-    $("#front_line_embroidery").val(value);
-    // $("#back_line_embroidery").val("");
+    $("#front_line_embroidery").val("");
+    $("#back_line_embroidery").val("");
 
     var price = $(".price-item--regular").text();
     $(".changing_price").text(price);
- 
+
     if (value !== "") {
       $("#embroidery_text_front").show();
+      $("#embroidery_text_front").text(value);
       // $("input[name=second_back_only]").show();
     } else {
       $("#embroidery_text_back").hide();
@@ -260,13 +261,14 @@ var myAppJavaScript = function($) {
     $("input[name=back_only]").val("");
 
     $("#front_line_embroidery").val("");
-    $("#back_line_embroidery").val(value);
+    $("#back_line_embroidery").val("");
 
     var price = $(".price-item--regular").text();
     $(".changing_price").text(price);
 
     if (value !== "") {
       $("#embroidery_text_back").show();
+      $("#embroidery_text_back").text(value);
       // $("input[name=second_back_only]").show();
     } else {
       $("#embroidery_text_back").hide();
