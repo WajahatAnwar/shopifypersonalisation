@@ -40,11 +40,17 @@ var myAppJavaScript = function($) {
   }
 
   if (towel_type !== "" || wrap_type !== "") {
+    var pixels;
+    if (towel_type !== "") {
+      pixels = "550px";
+    } else if (wrap_type !== "") {
+      pixels = "350px";
+    }
     $("#embroidery_text_front_second").hide();
     $("#embroidery_text_back_second").hide();
 
-    $("#embroidery_text_front").css("top", "505px");
-    $("#embroidery_text_back").css("top", "505px");
+    $("#embroidery_text_front").css("top", pixels);
+    $("#embroidery_text_back").css("top", pixels);
   } else {
     $("#embroidery_text_front_second").show();
     $("#embroidery_text_back_second").show();
