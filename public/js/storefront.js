@@ -237,11 +237,19 @@ var myAppJavaScript = function($) {
     $("input[name=front_only]").val("");
     $("input[name=back_only]").val("");
 
-    $("#front_line_embroidery").val("");
-    $("#back_line_embroidery").val("");
+    $("#front_line_embroidery").val(value);
+    // $("#back_line_embroidery").val("");
 
     var price = $(".price-item--regular").text();
     $(".changing_price").text(price);
+
+    if (value !== "") {
+      $("#embroidery_text_back").show();
+      // $("input[name=second_back_only]").show();
+    } else {
+      $("#embroidery_text_back").hide();
+      // $("input[name=second_back_only]").hide();
+    }
   });
 
   $("input[name=back_both]").change(function() {
@@ -252,10 +260,18 @@ var myAppJavaScript = function($) {
     $("input[name=back_only]").val("");
 
     $("#front_line_embroidery").val("");
-    $("#back_line_embroidery").val("");
+    $("#back_line_embroidery").val(value);
 
     var price = $(".price-item--regular").text();
     $(".changing_price").text(price);
+
+    if (value !== "") {
+      $("#embroidery_text_back").show();
+      // $("input[name=second_back_only]").show();
+    } else {
+      $("#embroidery_text_back").hide();
+      // $("input[name=second_back_only]").hide();
+    }
   });
 
   $(".add_to_cart_custom_button").click(function() {
@@ -284,18 +300,17 @@ var myAppJavaScript = function($) {
       }
     });
   }
-  $('.custom_font_swatch').click(function(){
-    var font_style = $(this).data('value');
-      alert(font_style);
-      $("#fuck_this_field").val("check");
+  $(".custom_font_swatch").click(function() {
+    var font_style = $(this).data("value");
+    alert(font_style);
+    $("#fuck_this_field").val("check");
 
-      $('#embroidery_text_front').css('font-family', font_style);
-      $('#embroidery_text_back').css('font-family', font_style);
-    
-      $('#embroidery_text_front_second').css('font-family', font_style);
-      $('#embroidery_text_back_second').css('font-family', font_style);
+    $("#embroidery_text_front").css("font-family", font_style);
+    $("#embroidery_text_back").css("font-family", font_style);
+
+    $("#embroidery_text_front_second").css("font-family", font_style);
+    $("#embroidery_text_back_second").css("font-family", font_style);
   });
-
 };
 
 if (typeof jQuery === "undefined" || parseFloat(jQuery.fn.jquery) < 1.7) {
