@@ -314,18 +314,27 @@ var myAppJavaScript = function($) {
     ) {
       $("#from_back_embroidery").attr("maxlength", "3");
       $("#from_second_back_embroidery").attr("maxlength", "3");
+
+      $("#from_back_embroidery").val("");
+      $("#from_second_back_embroidery").val("");
     } else if (
       selected_embroidery === "Front Embroidery" &&
       font_style === "monogram"
     ) {
       $("#from_embroidery").attr("maxlength", "3");
       $("#from_second_embroidery").attr("maxlength", "3");
+
+      $("#from_embroidery").val("");
+      $("#from_second_embroidery").val("");
     } else if (
       selected_embroidery === "Front & Back Embroidery" &&
       font_style === "monogram"
     ) {
       $("#from_front2_embroidery").attr("maxlength", "3");
       $("#from_back2_embroidery").attr("maxlength", "3");
+
+      $("#from_front2_embroidery").val("");
+      $("#from_back2_embroidery").val("");
     } else {
       $("#from_back_embroidery").attr("maxlength", "11");
       $("#from_second_back_embroidery").attr("maxlength", "11");
