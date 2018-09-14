@@ -242,7 +242,7 @@ var myAppJavaScript = function($) {
 
     var price = $(".price-item--regular").text();
     $(".changing_price").text(price);
-
+ 
     if (value !== "") {
       $("#embroidery_text_front").show();
       // $("input[name=second_back_only]").show();
