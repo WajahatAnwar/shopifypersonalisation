@@ -248,7 +248,7 @@ var myAppJavaScript = function($) {
       $("#embroidery_text_front").text(value);
       // $("input[name=second_back_only]").show();
     } else {
-      $("#embroidery_text_back").hide();
+      $("#embroidery_text_front").hide();
       // $("input[name=second_back_only]").hide();
     }
   });
