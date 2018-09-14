@@ -267,11 +267,11 @@ var myAppJavaScript = function($) {
     $(".changing_price").text(price);
 
     if (value !== "") {
-      $("#embroidery_text_back").show();
-      $("#embroidery_text_back").text(value);
+      $("#embroidery_text_back_both").show();
+      $("#embroidery_text_back_both").text(value);
       // $("input[name=second_back_only]").show();
     } else {
-      $("#embroidery_text_back").hide();
+      $("#embroidery_text_back_both").hide();
       // $("input[name=second_back_only]").hide();
     }
   });
