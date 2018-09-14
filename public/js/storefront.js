@@ -312,17 +312,29 @@ var myAppJavaScript = function($) {
       selected_embroidery === "Back Embroidery" &&
       font_style === "monogram"
     ) {
-      alert(selected_embroidery);
+      $("#from_back_embroidery").attr("maxlength", "3");
+      $("#from_second_back_embroidery").attr("maxlength", "3");
     } else if (
       selected_embroidery === "Front Embroidery" &&
       font_style === "monogram"
     ) {
-      alert(selected_embroidery);
+      $("#from_embroidery").attr("maxlength", "3");
+      $("#from_second_embroidery").attr("maxlength", "3");
     } else if (
       selected_embroidery === "Front & Back Embroidery" &&
       font_style === "monogram"
     ) {
-      alert(selected_embroidery);
+      $("#from_front2_embroidery").attr("maxlength", "3");
+      $("#from_back2_embroidery").attr("maxlength", "3");
+    } else {
+      $("#from_back_embroidery").attr("maxlength", "11");
+      $("#from_second_back_embroidery").attr("maxlength", "11");
+
+      $("#from_embroidery").attr("maxlength", "11");
+      $("#from_second_embroidery").attr("maxlength", "11");
+
+      $("#from_front2_embroidery").attr("maxlength", "11");
+      $("#from_back2_embroidery").attr("maxlength", "11");
     }
     $("#fuck_this_field").val("check");
 
