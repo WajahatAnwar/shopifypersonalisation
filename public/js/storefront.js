@@ -52,8 +52,8 @@ var myAppJavaScript = function($) {
     $("#embroidery_text_front").css("top", pixels);
     $("#embroidery_text_back").css("top", pixels);
   } else {
-    $("#embroidery_text_front_second").show();
-    $("#embroidery_text_back_second").show();
+    // $("#embroidery_text_front_second").show();
+    // $("#embroidery_text_back_second").show();
 
     $("#embroidery_text_front").css("top", "225px");
     $("#embroidery_text_back").css("top", "225px");
