@@ -22,6 +22,7 @@ var myAppJavaScript = function($) {
   $("input[name=second_front_only]").hide();
   $("input[name=second_back_only]").hide();
 
+  var selected_embroidery;
   var meta_front_back = $("#front_back_key").val();
   var meta_front = $("#front_key").val();
   var meta_back = $("#back_key").val();
@@ -64,12 +65,15 @@ var myAppJavaScript = function($) {
     console.log(type);
     if (type == "Front Embroidery") {
       $("input[value='Front Embroidery']").trigger("click");
+      selected_embroidery = "Front Embroidery";
     }
     if (type == "Back Embroidery") {
       $("input[value='Back Embroidery']").trigger("click");
+      selected_embroidery = "Back Embroidery";
     }
     if (type == "Front & Back Embroidery") {
       $("input[value='Front & Back Embroidery']").trigger("click");
+      selected_embroidery = "Front & Back Embroidery";
     }
   });
 
@@ -304,7 +308,22 @@ var myAppJavaScript = function($) {
   }
   $(".custom_font_swatch").click(function() {
     var font_style = $(this).data("value");
-    alert(font_style);
+    if (
+      selected_embroidery === "Back Embroidery" &&
+      font_style === "monogram"
+    ) {
+      alert(selected_embroidery);
+    } else if (
+      selected_embroidery === "Front Embroidery" &&
+      font_style === "monogram"
+    ) {
+      alert(selected_embroidery);
+    } else if (
+      selected_embroidery === "Front & Back Embroidery" &&
+      font_style === "monogram"
+    ) {
+      alert(selected_embroidery);
+    }
     $("#fuck_this_field").val("check");
 
     $("#embroidery_text_front").css("font-family", font_style);
