@@ -116,6 +116,7 @@ var myAppJavaScript = function($) {
     $("#embroidery_text_front").hide();
     // $("#embroidery_text_back").show();
     $("#embroidery_text_front_second").hide();
+    $("#embroidery_text_back_both").hide();
     // $("#embroidery_text_back_second").show();
 
     $(".show_select").show();
