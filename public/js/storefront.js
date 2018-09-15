@@ -73,6 +73,7 @@ var myAppJavaScript = function($) {
     if (type == "Front Embroidery") {
       $("input[value='Front Embroidery']").trigger("click");
       selected_embroidery = "Front Embroidery";
+      $("#disable_option").remove();
     }
     if (type == "Back Embroidery") {
       $("input[value='Back Embroidery']").trigger("click");
@@ -96,6 +97,7 @@ var myAppJavaScript = function($) {
     $("#embroidery_text_back").hide();
     // $("#embroidery_text_front_second").show();
     $("#embroidery_text_back_second").hide();
+    $("#embroidery_text_back_both").hide();
 
     $(".show_select").show();
 
