@@ -93,7 +93,7 @@ var myAppJavaScript = function($) {
     $("#custom_image_front").show();
     $("#custom_image_back").hide();
 
-    // $("#embroidery_text_front").show();
+    $("#embroidery_text_front").hide();
     $("#embroidery_text_back").hide();
     // $("#embroidery_text_front_second").show();
     $("#embroidery_text_back_second").hide();
