@@ -248,6 +248,7 @@ var myAppJavaScript = function($) {
     var value = $("input[name=front_both]").val();
     $("#front_line_embroidery_both").val(value);
 
+    $("#custom_image_front").show();
     $("input[name=front_only]").val("");
     $("input[name=back_only]").val("");
 
@@ -271,6 +272,7 @@ var myAppJavaScript = function($) {
     var value = $("input[name=back_both]").val();
     $("#back_line_embroidery_both").val(value);
 
+    $("#custom_image_back").show();
     $("input[name=front_only]").val("");
     $("input[name=back_only]").val("");
 
