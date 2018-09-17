@@ -371,6 +371,48 @@ var myAppJavaScript = function($) {
     $("#embroidery_text_front_second").css("font-family", font_style);
     $("#embroidery_text_back_second").css("font-family", font_style);
   });
+
+  $("input[name=rush_hour_check]").click(function() {
+    var condition = $("input[name=rush_hour_check]").prop("checked");
+    if (condition) {
+      alert("rush");
+      return false;
+      if (selected_embroidery === "Front Embroidery") {
+        // Front Embroider things
+        var front_embroidery = $("#from_embroidery").val();
+        var front_second_embroidery = $("#from_second_embroidery").val();
+
+        if (front_embroidery !== "" && front_second_embroidery === "") {
+          $("input[value='Front Rush']").trigger("click");
+        }
+        if (front_second_embroidery !== "") {
+          $("input[value='Double Front Rush']").trigger("click");
+        }
+      } else if (selected_embroidery === "Back Embroidery") {
+        //Back Embroider things
+        var back_embroidery = $("#from_back_embroidery").val();
+        var back_second_embroidery = $("#from_second_back_embroidery").val();
+
+        if (back_embroidery !== "" && back_second_embroidery === "") {
+          $("input[value='Back Rush']").trigger("click");
+        }
+        if (back_second_embroidery !== "") {
+          $("input[value='Double Back Rush']").trigger("click");
+        }
+      } else if (selected_embroidery === "Front & Back Embroidery") {
+        // Front & Back Both Embroidery
+        var front_both_embroidery = $("#from_front2_embroidery").val();
+        var back_both_embroidery = $("#from_back2_embroidery").val();
+
+        if (front_both_embroidery !== "") {
+          $("input[value='Front & Back Rush']").trigger("click");
+        }
+        if (back_both_embroidery !== "") {
+          $("input[value='Front & Back Rush']").trigger("click");
+        }
+      }
+    }
+  });
 };
 
 if (typeof jQuery === "undefined" || parseFloat(jQuery.fn.jquery) < 1.7) {
