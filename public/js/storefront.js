@@ -21,6 +21,11 @@ var myAppJavaScript = function($) {
   $(".double-back-embroidery").hide();
   $("input[name=second_front_only]").hide();
   $("input[name=second_back_only]").hide();
+  $("input[value='Front & Back Rush']").hide();
+  $("input[value='Front Rush']").hide();
+  $("input[value='Back Rush']").hide();
+  $("input[value='Double Back Rush']").hide();
+  $("input[value='Double Front Rush']").hide();
 
   var selected_embroidery;
   var meta_front_back = $("#front_back_key").val();
