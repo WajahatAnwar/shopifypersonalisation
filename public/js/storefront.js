@@ -77,15 +77,18 @@ var myAppJavaScript = function($) {
     console.log(type);
     if (type == "Front Embroidery") {
       $("input[value='Front Embroidery']").trigger("click");
+      $("input[name=rush_hour_check]").prop("checked", false);
       selected_embroidery = "Front Embroidery";
       $("#disable_option").remove();
     }
     if (type == "Back Embroidery") {
       $("input[value='Back Embroidery']").trigger("click");
+      $("input[name=rush_hour_check]").prop("checked", false);
       selected_embroidery = "Back Embroidery";
     }
     if (type == "Front & Back Embroidery") {
       $("input[value='Front & Back Embroidery']").trigger("click");
+      $("input[name=rush_hour_check]").prop("checked", false);
       selected_embroidery = "Front & Back Embroidery";
     }
   });
