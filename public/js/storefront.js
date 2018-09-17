@@ -410,6 +410,7 @@ var myAppJavaScript = function($) {
         }
       } else {
         alert("Please Select Type of the Embroidery First");
+        return false;
       }
     }
   });
