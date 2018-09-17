@@ -377,6 +377,7 @@ var myAppJavaScript = function($) {
     if (condition) {
       if (selected_embroidery === "Front Embroidery") {
         // Front Embroider things
+        alert("front embroidery");
         var front_embroidery = $("#from_embroidery").val();
         var front_second_embroidery = $("#from_second_embroidery").val();
 
@@ -388,6 +389,7 @@ var myAppJavaScript = function($) {
         }
       } else if (selected_embroidery === "Back Embroidery") {
         //Back Embroider things
+        alert("back embroidery");
         var back_embroidery = $("#from_back_embroidery").val();
         var back_second_embroidery = $("#from_second_back_embroidery").val();
 
@@ -399,6 +401,7 @@ var myAppJavaScript = function($) {
         }
       } else if (selected_embroidery === "Front & Back Embroidery") {
         // Front & Back Both Embroidery
+        alert("front and back embroidery");
         var front_both_embroidery = $("#from_front2_embroidery").val();
         var back_both_embroidery = $("#from_back2_embroidery").val();
 
