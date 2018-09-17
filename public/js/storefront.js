@@ -375,8 +375,6 @@ var myAppJavaScript = function($) {
   $("input[name=rush_hour_check]").click(function() {
     var condition = $("input[name=rush_hour_check]").prop("checked");
     if (condition) {
-      alert("rush");
-      return false;
       if (selected_embroidery === "Front Embroidery") {
         // Front Embroider things
         var front_embroidery = $("#from_embroidery").val();
@@ -410,6 +408,8 @@ var myAppJavaScript = function($) {
         if (back_both_embroidery !== "") {
           $("input[value='Front & Back Rush']").trigger("click");
         }
+      } else {
+        alert("Please Select Type of the Embroidery First");
       }
     }
   });
