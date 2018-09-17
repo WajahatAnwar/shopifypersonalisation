@@ -21,11 +21,11 @@ var myAppJavaScript = function($) {
   $(".double-back-embroidery").hide();
   $("input[name=second_front_only]").hide();
   $("input[name=second_back_only]").hide();
-  $("input[value='Front & Back Rush']").hide();
-  $("input[value='Front Rush']").hide();
-  $("input[value='Back Rush']").hide();
-  $("input[value='Double Back Rush']").hide();
-  $("input[value='Double Front Rush']").hide();
+  $(".front-rush").hide();
+  $(".back-rush").hide();
+  $(".front-back-rush").hide();
+  $(".double-front-rush").hide();
+  $(".double-back-rush").hide();
 
   var selected_embroidery;
   var meta_front_back = $("#front_back_key").val();
