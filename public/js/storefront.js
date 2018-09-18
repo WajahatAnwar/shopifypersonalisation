@@ -156,8 +156,9 @@ var myAppJavaScript = function($) {
     $(".ecom-modal").hide();
   });
 
-  $("input[name=second_front_only]").on("change", function() {
+  $("input[name=second_front_only]").on("keyup", function() {
     var value = $(this).val();
+    $("input[name=rush_hour_check]").prop("checked", false);
     if (value !== "") {
       $("#second_front_embroidery").val(value);
       $("#second_back_embroidery").val("");
@@ -179,8 +180,9 @@ var myAppJavaScript = function($) {
     }
   });
 
-  $("input[name=second_back_only]").on("change", function() {
+  $("input[name=second_back_only]").on("keyup", function() {
     var value = $(this).val();
+    $("input[name=rush_hour_check]").prop("checked", false);
     if (value !== "") {
       $("#second_back_embroidery").val(value);
       $("#second_front_embroidery").val("");
@@ -202,8 +204,9 @@ var myAppJavaScript = function($) {
     }
   });
 
-  $("input[name=front_only]").change(function() {
+  $("input[name=front_only]").keyup(function() {
     var value = $("input[name=front_only]").val();
+    $("input[name=rush_hour_check]").prop("checked", false);
     $("#front_line_embroidery").val(value);
     $("#back_line_embroidery").val("");
     $("input[name=back_only]").val("");
@@ -227,8 +230,9 @@ var myAppJavaScript = function($) {
     }
   });
 
-  $("input[name=back_only]").change(function() {
+  $("input[name=back_only]").keyup(function() {
     var value = $("input[name=back_only]").val();
+    $("input[name=rush_hour_check]").prop("checked", false);
     $("#back_line_embroidery").val(value);
     $("#front_line_embroidery").val("");
     $("input[name=front_only]").val("");
@@ -252,8 +256,9 @@ var myAppJavaScript = function($) {
     }
   });
 
-  $("input[name=front_both]").change(function() {
+  $("input[name=front_both]").keyup(function() {
     var value = $("input[name=front_both]").val();
+    $("input[name=rush_hour_check]").prop("checked", false);
     $("#front_line_embroidery_both").val(value);
 
     $("#custom_image_front").show();
@@ -279,8 +284,9 @@ var myAppJavaScript = function($) {
     }
   });
 
-  $("input[name=back_both]").change(function() {
+  $("input[name=back_both]").keyup(function() {
     var value = $("input[name=back_both]").val();
+    $("input[name=rush_hour_check]").prop("checked", false);
     $("#back_line_embroidery_both").val(value);
 
     $("#custom_image_back").show();
