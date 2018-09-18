@@ -169,6 +169,7 @@ var myAppJavaScript = function($) {
 
       var price = $(".price-item--regular").text();
       $(".changing_price").text(price);
+      $(".add_to_cart_custom_button").show();
     } else {
       $("input[value='Front Embroidery']").trigger("click");
       $("#second_front_embroidery").val("");
@@ -177,6 +178,8 @@ var myAppJavaScript = function($) {
 
       var price = $(".price-item--regular").text();
       $(".changing_price").text(price);
+
+      $(".add_to_cart_custom_button").hide();
     }
   });
 
@@ -193,6 +196,8 @@ var myAppJavaScript = function($) {
 
       var price = $(".price-item--regular").text();
       $(".changing_price").text(price);
+
+      $(".add_to_cart_custom_button").show();
     } else {
       $("input[value='Back Embroidery']").trigger("click");
       $("#second_front_embroidery").val("");
@@ -201,6 +206,7 @@ var myAppJavaScript = function($) {
 
       var price = $(".price-item--regular").text();
       $(".changing_price").text(price);
+      $(".add_to_cart_custom_button").hide();
     }
   });
 
@@ -224,9 +230,11 @@ var myAppJavaScript = function($) {
     if (value !== "") {
       $("#embroidery_text_front").show();
       $("input[name=second_front_only]").show();
+      $(".add_to_cart_custom_button").show();
     } else {
       $("#embroidery_text_front").hide();
       $("input[name=second_front_only]").hide();
+      $(".add_to_cart_custom_button").hide();
     }
   });
 
@@ -250,9 +258,11 @@ var myAppJavaScript = function($) {
     if (value !== "") {
       $("#embroidery_text_back").show();
       $("input[name=second_back_only]").show();
+      $(".add_to_cart_custom_button").show();
     } else {
       $("#embroidery_text_back").hide();
       $("input[name=second_back_only]").hide();
+      $(".add_to_cart_custom_button").hide();
     }
   });
 
@@ -277,9 +287,11 @@ var myAppJavaScript = function($) {
       $("#embroidery_text_front").show();
       $("#embroidery_text_front").text(value);
       $("#embroidery_text_back_both").hide();
+      $(".add_to_cart_custom_button").show();
       // $("input[name=second_back_only]").show();
     } else {
       $("#embroidery_text_front").hide();
+      $(".add_to_cart_custom_button").hide();
       // $("input[name=second_back_only]").hide();
     }
   });
@@ -305,9 +317,11 @@ var myAppJavaScript = function($) {
       $("#embroidery_text_back_both").show();
       $("#embroidery_text_back_both").text(value);
       $("#embroidery_text_front").hide();
+      $(".add_to_cart_custom_button").show();
       // $("input[name=second_back_only]").show();
     } else {
       $("#embroidery_text_back_both").hide();
+      $(".add_to_cart_custom_button").hide();
       // $("input[name=second_back_only]").hide();
     }
   });
