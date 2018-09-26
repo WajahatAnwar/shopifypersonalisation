@@ -121,6 +121,43 @@ class ShopifyController extends Controller
 				return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, 'success' => '1']);
 	}
 
+	public function save_variants()
+	{
+		$product_ids = $_POST['trigger_product'];
+		$dash_pos = strpos($product_ids, "-");
+		$product_id = substr($product_ids, 0, $dash_pos);
+		$product_name = substr($product_ids, $dash_pos+1);
+
+		$shopify_store_id = $_POST['shopify_store_id'];
+
+
+		$postData1 = [
+			"option1" => "Front Embroidery",
+			"price" => "5.00"
+		];
+		$data1 = $this->shopify->setShopUrl(session('myshopifyDomain'))
+				 ->setAccessToken(session('accessToken'))
+				 ->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData ]);
+
+			$postData2 = [
+				"option1" => "Back Embroidery",
+				"price" => "10.00"
+			];
+			$data2 = $this->shopify->setShopUrl(session('myshopifyDomain'))
+						->setAccessToken(session('accessToken'))
+						->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData ]);
+
+		dd($data2);
+		$shopUrl= session('myshopifyDomain');
+		$shopify_id = session('shopifyId');
+		$shop = Shop::where('myshopify_domain' , $shopUrl)->first();
+		$shopProducts = $this->shopify->setShopUrl($shop->myshopify_domain)
+					->setAccessToken($shop->access_token)
+					->get('admin/products.json',[ 'limit' => 250 , 'page' => 1 ]);
+		$product_disable_key = DB::Table('product_disable_key')->where('shopify_store_id', $shopify_id )->get();
+		return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key,'success' => '1']);
+	}
+
 	public function save_disable_key()
 	{
 		$product_ids = $_POST['trigger_product'];

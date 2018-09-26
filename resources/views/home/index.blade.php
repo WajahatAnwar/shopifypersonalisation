@@ -104,6 +104,46 @@
 		</article>
 	</section>
 
+			<section>
+		<aside>
+			<h2>Options</h2>
+			<p>From here you can select a Product type.</p>
+		</aside>
+		<article>
+			<div class="card">
+				@if($success == 1)
+				<div class="alert success">
+					<dl>
+						<dt>Product Type is successfull set </dt>
+					</dl>
+				</div>
+				@endif
+				<form action="/save_variants" method="POST">
+					@csrf
+					<div>
+						<div class="" style="background-color: #5e8f3f;">
+							<h2 style="color: #ffffff;padding: 21px;">Set Product Type</h2>
+						</div>
+						<input type="hidden" name="shopify_store_id" value="{{Session('shopifyId')}}">
+						<div class="row">
+							<label>Product</label>
+							<select data-placeholder="Choose a Product..." class="chosen-select" tabindex="2" name="trigger_product" id="" required>
+								@if(!empty($shop_products))
+									@foreach ($shop_products as $product)
+										<option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}</option>
+									@endforeach
+								@endif
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<input type="submit" onclick="store()" class="button secondary">
+					</div>	
+				</form>
+			</div>
+		</article>
+	</section>
+
 		<section id="">
 		<aside>
   			<h2>Disable the key on product</h2>
