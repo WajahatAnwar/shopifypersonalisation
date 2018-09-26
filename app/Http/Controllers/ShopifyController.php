@@ -137,7 +137,7 @@ class ShopifyController extends Controller
 		];
 		$data1 = $this->shopify->setShopUrl(session('myshopifyDomain'))
 				 ->setAccessToken(session('accessToken'))
-				 ->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData ]);
+				 ->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData1 ]);
 
 			$postData2 = [
 				"option1" => "Back Embroidery",
@@ -145,7 +145,7 @@ class ShopifyController extends Controller
 			];
 			$data2 = $this->shopify->setShopUrl(session('myshopifyDomain'))
 						->setAccessToken(session('accessToken'))
-						->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData ]);
+						->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData2 ]);
 
 		dd($data2);
 		$shopUrl= session('myshopifyDomain');
