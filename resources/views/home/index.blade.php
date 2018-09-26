@@ -106,8 +106,8 @@
 
 			<section>
 		<aside>
-			<h2>Options</h2>
-			<p>From here you can select a Product type.</p>
+			<h2>Add Variants</h2>
+			<p>From here you can add variants to products</p>
 		</aside>
 		<article>
 			<div class="card">
@@ -122,7 +122,7 @@
 					@csrf
 					<div>
 						<div class="" style="background-color: #5e8f3f;">
-							<h2 style="color: #ffffff;padding: 21px;">Set Product Type</h2>
+							<h2 style="color: #ffffff;padding: 21px;">Set Variants</h2>
 						</div>
 						<input type="hidden" name="shopify_store_id" value="{{Session('shopifyId')}}">
 						<div class="row">
