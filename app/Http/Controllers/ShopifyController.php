@@ -211,7 +211,6 @@ class ShopifyController extends Controller
 									->setAccessToken(session('accessToken'))
 									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData10 ]);
 
-		dd($data10);
 		$shopUrl= session('myshopifyDomain');
 		$shopify_id = session('shopifyId');
 		$shop = Shop::where('myshopify_domain' , $shopUrl)->first();
