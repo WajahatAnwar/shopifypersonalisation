@@ -131,9 +131,11 @@
 								@if(!empty($shop_products))
 									@foreach ($shop_products as $product)
 										@foreach($product->variants as $variants)
-											<span>{{ $variants->id }}</span>
+											@if(empty($variants->id))
+												<?php return false; ?>
+											@endif
 										@endforeach
-											<!-- <option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}---</option> -->
+											<option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}---</option>
 										
 									@endforeach
 								@endif
