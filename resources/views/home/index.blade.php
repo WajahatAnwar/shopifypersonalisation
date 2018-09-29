@@ -132,7 +132,7 @@
 									{{ $variable = true }} 
 									@foreach ($shop_products as $product)
 										@foreach($product->variants as $variants)
-											@if(empty($variants->id))
+											@if(!empty($variants->id))
 												{{ $variable = false }} 
 											@endif
 										@endforeach
