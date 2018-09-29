@@ -129,11 +129,11 @@
 							<label>Product</label>
 							<select data-placeholder="Choose a Product..." class="chosen-select" tabindex="2" name="trigger_product" id="" required>
 								@if(!empty($shop_products))
-									<?php  $variable = true ?>
+									{{ $variable = false }} 
 									@foreach ($shop_products as $product)
 										@foreach($product->variants as $variants)
 											@if(empty($variants->id))
-												<?php  $variable = false ?>
+												{{ $variable = false }} 
 											@endif
 										@endforeach
 										@if($variable)
