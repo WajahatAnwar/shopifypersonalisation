@@ -131,13 +131,11 @@
 								@if(!empty($shop_products))
 									{{ $variable = true }} 
 									@foreach ($shop_products as $product)
-										@foreach($product->variants as $variants)
-											@if(!empty($variants->id))
-												{{ $variable = false }} 
-											@endif
-										@endforeach
+										@if(sizeof($product->variants) > 1)
+											{{ $variable = false }} 
+										@endif
 										@if($variable)
-											<option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}---</option>
+											<option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}</option>
 										@endif
 									@endforeach
 								@endif
