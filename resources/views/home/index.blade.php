@@ -130,8 +130,10 @@
 							<select data-placeholder="Choose a Product..." class="chosen-select" tabindex="2" name="trigger_product" id="" required>
 								@if(!empty($shop_products))
 									@foreach ($shop_products as $product)
-										
-											<option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}---</option>
+										@foreach($product->variants as $variants)
+											<span>{{ $variants->id }}</span>
+										@endforeach
+											<!-- <option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}---</option> -->
 										
 									@endforeach
 								@endif
