@@ -131,7 +131,7 @@
 								@if(!empty($shop_products))
 									@foreach ($shop_products as $product)
 										
-											<option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}</option>
+											<option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}----{{ $product->variants['0']['id'] }}</option>
 										
 									@endforeach
 								@endif
