@@ -131,7 +131,7 @@
 								@if(!empty($shop_products))
 									{{ $variable = true }} 
 									@foreach ($shop_products as $product)
-										@if(sizeof($product->variants) > 1)
+										@if(sizeof($product->variants) > 2)
 											{{ $variable = false }} 
 										@endif
 										@if($variable)
