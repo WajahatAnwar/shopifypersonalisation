@@ -129,13 +129,13 @@
 							<label>Product</label>
 							<select data-placeholder="Choose a Product..." class="chosen-select" tabindex="2" name="trigger_product" id="" required>
 								@if(!empty($shop_products))
-									{{ $variable = false }} 
 									@foreach ($shop_products as $product)
-										@if(sizeof($product->variants) == 1)
-											{{ $variable = true }} 
+									{{ $variable = true }} 
+										@if(sizeof($product->variants) > 1)
+											{{ $variable = false }} 
 										@endif
 										@if($variable)
-											<option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}-----{{ sizeof($product->variants) }}</option>
+											<option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}</option>
 										@endif
 									@endforeach
 								@endif
