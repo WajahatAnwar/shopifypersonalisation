@@ -134,9 +134,9 @@
 										@if(sizeof($product->variants) > 2)
 											{{ $variable = false }} 
 										@endif
-										@if($variable)
+										
 											<option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}-----{{ sizeof($product->variants) }}</option>
-										@endif
+										
 									@endforeach
 								@endif
 							</select>
