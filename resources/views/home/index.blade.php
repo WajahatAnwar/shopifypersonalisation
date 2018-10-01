@@ -131,9 +131,11 @@
 								@if(!empty($shop_products))
 									@foreach ($shop_products as $product)
 									{{ $variable = true }} 
-										@if(sizeof($product->variants) > 1)
-											{{ $variable = false }} 
-										@endif
+										@foreach ($product->variants as $variant)
+											@if ($variant->title == "Front Embroidery")
+												{{ $variable = false }} 
+											@endif
+										@endforeach
 										@if($variable)
 											<option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}</option>
 										@endif
