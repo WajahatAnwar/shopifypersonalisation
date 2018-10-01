@@ -111,10 +111,10 @@
 		</aside>
 		<article>
 			<div class="card">
-				@if($success == 1)
+				@if($success == 7)
 				<div class="alert success">
 					<dl>
-						<dt>Product Type is successfull set </dt>
+						<dt>Product Variants is added </dt>
 					</dl>
 				</div>
 				@endif
