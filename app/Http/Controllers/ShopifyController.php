@@ -133,7 +133,8 @@ class ShopifyController extends Controller
 
 
 			$postData1 = [
-				"option1" => "Front Embroidery",
+				"option1" => "Embroidery",
+				"option2" => "Front Embroidery",
 				"price" => "5.00"
 			];
 			$data1 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -141,7 +142,8 @@ class ShopifyController extends Controller
 					->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData1 ]);
 
 			$postData2 = [
-				"option1" => "Back Embroidery",
+				"option1" => "Embroidery",
+				"option2" => "Back Embroidery",
 				"price" => "10.00"
 			];
 			$data2 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -149,7 +151,8 @@ class ShopifyController extends Controller
 					->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData2 ]);
 				
 			$postData3 = [
-							"option1" => "Front & Back Embroidery",
+							"option1" => "Embroidery",
+							"option2" => "Front & Back Embroidery",
 							"price" => "15.00"
 						];
 			$data3 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -157,7 +160,8 @@ class ShopifyController extends Controller
 									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData3 ]);
 			
 			$postData4 = [
-							"option1" => "Double Front Embroidery",
+							"option1" => "Embroidery",
+							"option2" => "Double Front Embroidery",
 							"price" => "20.00"
 						];
 			$data4 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -165,7 +169,8 @@ class ShopifyController extends Controller
 									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData4 ]);
 			
 			$postData5 = [
-							"option1" => "Double Back Embroidery",
+							"option1" => "Embroidery",
+							"option2" => "Double Back Embroidery",
 							"price" => "25.00"
 						];
 			$data5 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -173,7 +178,8 @@ class ShopifyController extends Controller
 									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData5 ]);
 			
 			$postData6 = [
-							"option1" => "Front Rush",
+							"option1" => "Embroidery",
+							"option2" => "Front Rush",
 							"price" => "30.00"
 						];
 			$data6 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -181,7 +187,8 @@ class ShopifyController extends Controller
 									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData6 ]);
 			
 			$postData7 = [
-							"option1" => "Back Rush",
+							"option1" => "Embroidery",
+							"option2" => "Back Rush",
 							"price" => "35.00"
 						];
 			$data7 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -189,7 +196,8 @@ class ShopifyController extends Controller
 									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData7 ]);
 			
 			$postData8 = [
-							"option1" => "Front & Back Rush",
+							"option1" => "Embroidery",
+							"option2" => "Front & Back Rush",
 							"price" => "40.00"
 						];
 			$data8 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -197,7 +205,8 @@ class ShopifyController extends Controller
 									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData8 ]);
 			
 			$postData9 = [
-							"option1" => "Double Front Rush",
+							"option1" => "Embroidery",
+							"option2" => "Double Front Rush",
 							"price" => "45.00"
 						];
 			$data9 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -205,7 +214,8 @@ class ShopifyController extends Controller
 									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData9 ]);
 			
 			$postData10 = [
-							"option1" => "Double Back Rush",
+							"option1" => "Embroidery",
+							"option2" => "Double Back Rush",
 							"price" => "50.00"
 						];
 			$data10 = $this->shopify->setShopUrl(session('myshopifyDomain'))
