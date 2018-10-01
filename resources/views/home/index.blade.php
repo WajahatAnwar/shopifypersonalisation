@@ -132,7 +132,7 @@
 									@foreach ($shop_products as $product)
 									{{ $variable = true }} 
 										@foreach ($product->variants as $variant)
-											@if ($variant->title == "Front Embroidery")
+											@if ($variant->option1 == "Embroidery")
 												{{ $variable = false }} 
 											@endif
 										@endforeach
