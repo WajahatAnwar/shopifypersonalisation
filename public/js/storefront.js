@@ -329,7 +329,8 @@ var myAppJavaScript = function($) {
   $(".add_to_cart_custom_button").click(function() {
     $(".btnAddToCart").trigger("click");
   });
-  var product_name = $("#product_name").val();
+  var product_name_orig = $("#product_name").val();
+  var product_name = product_name_orig.replace(/\s+/g, "-");
   jQuery.getJSON("/products/" + product_name + ".js", function(product) {
     $("#custom_image_front").attr("src", product.images["0"]);
     $("#custom_image_back").attr("src", product.images["1"]);
