@@ -138,7 +138,7 @@
 												{{ $price = $variant->price }}
 												{{ $counter = 1 }}
 											@endif
-											@if ($variant->option1 == "Embroidery")
+											@if ($variant->option1 == "Front Embroidery")
 												{{ $variable = false }} 
 											@endif
 										@endforeach
