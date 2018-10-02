@@ -130,7 +130,7 @@
 							<select data-placeholder="Choose a Product..." class="chosen-select" tabindex="2" name="trigger_product" id="" required>
 								@if(!empty($shop_products))
 								{{ $counter = 0 }}
-								{{ $price = "0" }}
+								{{ $price = 0 }}
 									@foreach ($shop_products as $product)
 									{{ $variable = true }} 
 										@foreach ($product->variants as $variant)
