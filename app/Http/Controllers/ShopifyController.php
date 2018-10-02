@@ -35,7 +35,7 @@ class ShopifyController extends Controller
 				$shopProducts = $this->shopify->setShopUrl($shop->myshopify_domain)
 				->setAccessToken($shop->access_token)
 				->get('admin/products.json',[ 'limit' => 250 , 'page' => 1 ]);
-				dd($shopProducts);
+				// dd($shopProducts);
 				// dd();
 				$product_disable_key = DB::Table('product_disable_key')->where('shopify_store_id', session('shopifyId') )->get();
 				return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key, 'success' => '2']);
@@ -126,6 +126,7 @@ class ShopifyController extends Controller
 	public function save_variants()
 	{
 		$product_ids = $_POST['trigger_product'];
+		$product_price = $_POST['product_price'];
 		$dash_pos = strpos($product_ids, "-");
 		$product_id = substr($product_ids, 0, $dash_pos);
 		$product_name = substr($product_ids, $dash_pos+1);
@@ -136,7 +137,7 @@ class ShopifyController extends Controller
 			$postData1 = [
 				"option1" => "Front Embroidery",
 				"option2" => "Front Embroidery",
-				"price" => "5.00"
+				"price" => $product_price + 4
 			];
 			$data1 = $this->shopify->setShopUrl(session('myshopifyDomain'))
 					->setAccessToken(session('accessToken'))
@@ -145,7 +146,7 @@ class ShopifyController extends Controller
 			$postData2 = [
 				"option1" => "Back Embroidery",
 				"option2" => "Back Embroidery",
-				"price" => "10.00"
+				"price" => $product_price + 4
 			];
 			$data2 = $this->shopify->setShopUrl(session('myshopifyDomain'))
 					->setAccessToken(session('accessToken'))
@@ -154,7 +155,7 @@ class ShopifyController extends Controller
 			$postData3 = [
 							"option1" => "Front & Back Embroidery",
 							"option2" => "Front & Back Embroidery",
-							"price" => "15.00"
+							"price" => $product_price + 4
 						];
 			$data3 = $this->shopify->setShopUrl(session('myshopifyDomain'))
 									->setAccessToken(session('accessToken'))
@@ -163,7 +164,7 @@ class ShopifyController extends Controller
 			$postData4 = [
 							"option1" => "Double Front Embroidery",
 							"option2" => "Double Front Embroidery",
-							"price" => "20.00"
+							"price" => $product_price + 6.95
 						];
 			$data4 = $this->shopify->setShopUrl(session('myshopifyDomain'))
 									->setAccessToken(session('accessToken'))
@@ -172,7 +173,7 @@ class ShopifyController extends Controller
 			$postData5 = [
 							"option1" => "Double Back Embroidery",
 							"option2" => "Double Back Embroidery",
-							"price" => "25.00"
+							"price" => $product_price + 6.95
 						];
 			$data5 = $this->shopify->setShopUrl(session('myshopifyDomain'))
 									->setAccessToken(session('accessToken'))
