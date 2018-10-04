@@ -47,20 +47,28 @@ var myAppJavaScript = function($) {
   if (towel_type !== "" || wrap_type !== "") {
     var pixels;
     var second_pixels;
+    var left_pixels;
     if (towel_type !== "") {
       pixels = "550px";
       pixels = "570px";
     } else if (wrap_type !== "") {
-      pixels = "350px";
-      second_pixels = "370px";
+      pixels = "440px";
+      second_pixels = "460px";
+      left_pixels = "140px";
     }
     $("#embroidery_text_front_second").hide();
     $("#embroidery_text_back_second").hide();
 
-    $("#embroidery_text_front").css("top", pixels);
-    $("#embroidery_text_front_second").css("top", second_pixels);
+    $("#embroidery_text_front").css({ top: pixels, left: left_pixels });
+    $("#embroidery_text_front_second").css({
+      top: second_pixels,
+      left: left_pixels
+    });
     $("#embroidery_text_back").css("top", pixels);
-    $("#embroidery_text_back_second").css("top", pixels);
+    $("#embroidery_text_back_second").css({
+      top: second_pixels,
+      left: left_pixels
+    });
   } else {
     // $("#embroidery_text_front_second").show();
     // $("#embroidery_text_back_second").show();
