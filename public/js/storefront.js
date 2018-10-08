@@ -405,7 +405,7 @@ var myAppJavaScript = function($) {
       $("#from_front2_embroidery").attr("maxlength", "11");
       $("#from_back2_embroidery").attr("maxlength", "11");
     }
-    $("#fuck_this_field").val("check");
+    $("#fuck_this_field").val(font_style);
 
     $("#embroidery_text_front").css("font-family", font_style);
     $("#embroidery_text_back").css("font-family", font_style);
