@@ -13,9 +13,9 @@ var myAppJavaScript = function($) {
   $("body").append(
     "<p>Your app is using jQuery version " + $.fn.jquery + "</p>"
   );
-  $(".list-view-item__title")
-    .next()
-    .hide();
+  // $(".list-view-item__title")
+  //   .next()
+  //   .hide();
   $(".header:contains(Embroidery)").hide();
   $(".front-embroidery").hide();
   $(".back-embroidery").hide();
