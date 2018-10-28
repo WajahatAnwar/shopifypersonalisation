@@ -86,6 +86,13 @@ var myAppJavaScript = function($) {
     $(".changing_price").text(price);
   });
 
+  $("#size_select").on("change", function() {
+    var type = $("#size_select")
+      .find(":selected")
+      .text();
+    $("#size_field").val(type);
+  });
+
   $("#personlize_select").on("change", function() {
     var type = $("#personlize_select")
       .find(":selected")
