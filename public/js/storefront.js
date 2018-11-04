@@ -204,6 +204,20 @@ var myAppJavaScript = function($) {
 
       $(".add_to_cart_custom_button").hide();
     }
+
+    color_valid = $("#color_of_embroidery").val();
+    font_valid = $("#fuck_this_field").val();
+
+    if( color_valid === "" & font_valid === "" )
+    {
+      $("#validation_text").text(" Color and Font are not selected !");
+    }else if( color_valid === "" && font_valid !== "")
+    {
+      $("#validation_text").text(" Color is not selected !");
+    }else if( font_valid === "" && color_valid !== "" )
+    {
+      $("#validation_text").text(" Font is not selected !");
+    }
   });
 
   $("input[name=second_back_only]").on("keyup", function() {
@@ -230,6 +244,20 @@ var myAppJavaScript = function($) {
       var price = $(".price-item--regular").text();
       $(".changing_price").text(price);
       $(".add_to_cart_custom_button").hide();
+    }
+
+    color_valid = $("#color_of_embroidery").val();
+    font_valid = $("#fuck_this_field").val();
+
+    if( color_valid === "" & font_valid === "" )
+    {
+      $("#validation_text").text(" Color and Font are not selected !");
+    }else if( color_valid === "" && font_valid !== "")
+    {
+      $("#validation_text").text(" Color is not selected !");
+    }else if( font_valid === "" && color_valid !== "" )
+    {
+      $("#validation_text").text(" Font is not selected !");
     }
   });
 
@@ -259,6 +287,20 @@ var myAppJavaScript = function($) {
       $("input[name=second_front_only]").hide();
       $(".add_to_cart_custom_button").hide();
     }
+
+    color_valid = $("#color_of_embroidery").val();
+    font_valid = $("#fuck_this_field").val();
+
+    if( color_valid === "" & font_valid === "" )
+    {
+      $("#validation_text").text(" Color and Font are not selected !");
+    }else if( color_valid === "" && font_valid !== "")
+    {
+      $("#validation_text").text(" Color is not selected !");
+    }else if( font_valid === "" && color_valid !== "" )
+    {
+      $("#validation_text").text(" Font is not selected !");
+    }
   });
 
   $("input[name=back_only]").keyup(function() {
@@ -286,6 +328,20 @@ var myAppJavaScript = function($) {
       $("#embroidery_text_back").hide();
       $("input[name=second_back_only]").hide();
       $(".add_to_cart_custom_button").hide();
+    }
+
+    color_valid = $("#color_of_embroidery").val();
+    font_valid = $("#fuck_this_field").val();
+
+    if( color_valid === "" & font_valid === "" )
+    {
+      $("#validation_text").text(" Color and Font are not selected !");
+    }else if( color_valid === "" && font_valid !== "")
+    {
+      $("#validation_text").text(" Color is not selected !");
+    }else if( font_valid === "" && color_valid !== "" )
+    {
+      $("#validation_text").text(" Font is not selected !");
     }
   });
 
@@ -317,6 +373,20 @@ var myAppJavaScript = function($) {
       $(".add_to_cart_custom_button").hide();
       // $("input[name=second_back_only]").hide();
     }
+
+    color_valid = $("#color_of_embroidery").val();
+    font_valid = $("#fuck_this_field").val();
+
+    if( color_valid === "" & font_valid === "" )
+    {
+      $("#validation_text").text(" Color and Font are not selected !");
+    }else if( color_valid === "" && font_valid !== "")
+    {
+      $("#validation_text").text(" Color is not selected !");
+    }else if( font_valid === "" && color_valid !== "" )
+    {
+      $("#validation_text").text(" Font is not selected !");
+    }
   });
 
   $("input[name=back_both]").keyup(function() {
@@ -346,6 +416,20 @@ var myAppJavaScript = function($) {
       $("#embroidery_text_back_both").hide();
       $(".add_to_cart_custom_button").hide();
       // $("input[name=second_back_only]").hide();
+    }
+
+    color_valid = $("#color_of_embroidery").val();
+    font_valid = $("#fuck_this_field").val();
+
+    if( color_valid === "" & font_valid === "" )
+    {
+      $("#validation_text").text(" Color and Font are not selected !");
+    }else if( color_valid === "" && font_valid !== "")
+    {
+      $("#validation_text").text(" Color is not selected !");
+    }else if( font_valid === "" && color_valid !== "" )
+    {
+      $("#validation_text").text(" Font is not selected !");
     }
   });
 
