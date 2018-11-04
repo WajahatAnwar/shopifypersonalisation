@@ -208,15 +208,14 @@ var myAppJavaScript = function($) {
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
 
-    if( color_valid === "" & font_valid === "" )
-    {
+    if ((color_valid === "") & (font_valid === "")) {
       $("#validation_text").text(" Color and Font are not selected !");
-    }else if( color_valid === "" && font_valid !== "")
-    {
+    } else if (color_valid === "" && font_valid !== "") {
       $("#validation_text").text(" Color is not selected !");
-    }else if( font_valid === "" && color_valid !== "" )
-    {
+    } else if (font_valid === "" && color_valid !== "") {
       $("#validation_text").text(" Font is not selected !");
+    } else {
+      $("#validation_text").text("");
     }
   });
 
@@ -249,15 +248,14 @@ var myAppJavaScript = function($) {
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
 
-    if( color_valid === "" & font_valid === "" )
-    {
+    if ((color_valid === "") & (font_valid === "")) {
       $("#validation_text").text(" Color and Font are not selected !");
-    }else if( color_valid === "" && font_valid !== "")
-    {
+    } else if (color_valid === "" && font_valid !== "") {
       $("#validation_text").text(" Color is not selected !");
-    }else if( font_valid === "" && color_valid !== "" )
-    {
+    } else if (font_valid === "" && color_valid !== "") {
       $("#validation_text").text(" Font is not selected !");
+    } else {
+      $("#validation_text").text("");
     }
   });
 
@@ -291,15 +289,14 @@ var myAppJavaScript = function($) {
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
 
-    if( color_valid === "" & font_valid === "" )
-    {
+    if ((color_valid === "") & (font_valid === "")) {
       $("#validation_text").text(" Color and Font are not selected !");
-    }else if( color_valid === "" && font_valid !== "")
-    {
+    } else if (color_valid === "" && font_valid !== "") {
       $("#validation_text").text(" Color is not selected !");
-    }else if( font_valid === "" && color_valid !== "" )
-    {
+    } else if (font_valid === "" && color_valid !== "") {
       $("#validation_text").text(" Font is not selected !");
+    } else {
+      $("#validation_text").text("");
     }
   });
 
@@ -333,15 +330,14 @@ var myAppJavaScript = function($) {
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
 
-    if( color_valid === "" & font_valid === "" )
-    {
+    if ((color_valid === "") & (font_valid === "")) {
       $("#validation_text").text(" Color and Font are not selected !");
-    }else if( color_valid === "" && font_valid !== "")
-    {
+    } else if (color_valid === "" && font_valid !== "") {
       $("#validation_text").text(" Color is not selected !");
-    }else if( font_valid === "" && color_valid !== "" )
-    {
+    } else if (font_valid === "" && color_valid !== "") {
       $("#validation_text").text(" Font is not selected !");
+    } else {
+      $("#validation_text").text("");
     }
   });
 
@@ -377,15 +373,14 @@ var myAppJavaScript = function($) {
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
 
-    if( color_valid === "" & font_valid === "" )
-    {
+    if ((color_valid === "") & (font_valid === "")) {
       $("#validation_text").text(" Color and Font are not selected !");
-    }else if( color_valid === "" && font_valid !== "")
-    {
+    } else if (color_valid === "" && font_valid !== "") {
       $("#validation_text").text(" Color is not selected !");
-    }else if( font_valid === "" && color_valid !== "" )
-    {
+    } else if (font_valid === "" && color_valid !== "") {
       $("#validation_text").text(" Font is not selected !");
+    } else {
+      $("#validation_text").text("");
     }
   });
 
@@ -421,15 +416,14 @@ var myAppJavaScript = function($) {
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
 
-    if( color_valid === "" & font_valid === "" )
-    {
+    if ((color_valid === "") & (font_valid === "")) {
       $("#validation_text").text(" Color and Font are not selected !");
-    }else if( color_valid === "" && font_valid !== "")
-    {
+    } else if (color_valid === "" && font_valid !== "") {
       $("#validation_text").text(" Color is not selected !");
-    }else if( font_valid === "" && color_valid !== "" )
-    {
+    } else if (font_valid === "" && color_valid !== "") {
       $("#validation_text").text(" Font is not selected !");
+    } else {
+      $("#validation_text").text("");
     }
   });
 
