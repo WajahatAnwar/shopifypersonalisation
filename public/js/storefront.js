@@ -210,12 +210,16 @@ var myAppJavaScript = function($) {
 
     if ((color_valid === "") & (font_valid === "")) {
       $("#validation_text").text(" Color and Font are not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else if (color_valid === "" && font_valid !== "") {
       $("#validation_text").text(" Color is not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else if (font_valid === "" && color_valid !== "") {
       $("#validation_text").text(" Font is not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else {
       $("#validation_text").text("");
+      $(".add_to_cart_custom_button").show();
     }
   });
 
@@ -250,12 +254,16 @@ var myAppJavaScript = function($) {
 
     if ((color_valid === "") & (font_valid === "")) {
       $("#validation_text").text(" Color and Font are not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else if (color_valid === "" && font_valid !== "") {
       $("#validation_text").text(" Color is not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else if (font_valid === "" && color_valid !== "") {
       $("#validation_text").text(" Font is not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else {
       $("#validation_text").text("");
+      $(".add_to_cart_custom_button").show();
     }
   });
 
@@ -291,12 +299,16 @@ var myAppJavaScript = function($) {
 
     if ((color_valid === "") & (font_valid === "")) {
       $("#validation_text").text(" Color and Font are not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else if (color_valid === "" && font_valid !== "") {
       $("#validation_text").text(" Color is not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else if (font_valid === "" && color_valid !== "") {
       $("#validation_text").text(" Font is not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else {
       $("#validation_text").text("");
+      $(".add_to_cart_custom_button").show();
     }
   });
 
@@ -332,12 +344,16 @@ var myAppJavaScript = function($) {
 
     if ((color_valid === "") & (font_valid === "")) {
       $("#validation_text").text(" Color and Font are not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else if (color_valid === "" && font_valid !== "") {
       $("#validation_text").text(" Color is not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else if (font_valid === "" && color_valid !== "") {
       $("#validation_text").text(" Font is not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else {
       $("#validation_text").text("");
+      $(".add_to_cart_custom_button").show();
     }
   });
 
@@ -375,12 +391,16 @@ var myAppJavaScript = function($) {
 
     if ((color_valid === "") & (font_valid === "")) {
       $("#validation_text").text(" Color and Font are not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else if (color_valid === "" && font_valid !== "") {
       $("#validation_text").text(" Color is not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else if (font_valid === "" && color_valid !== "") {
       $("#validation_text").text(" Font is not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else {
       $("#validation_text").text("");
+      $(".add_to_cart_custom_button").show();
     }
   });
 
@@ -418,12 +438,16 @@ var myAppJavaScript = function($) {
 
     if ((color_valid === "") & (font_valid === "")) {
       $("#validation_text").text(" Color and Font are not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else if (color_valid === "" && font_valid !== "") {
       $("#validation_text").text(" Color is not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else if (font_valid === "" && color_valid !== "") {
       $("#validation_text").text(" Font is not selected !");
+      $(".add_to_cart_custom_button").hide();
     } else {
       $("#validation_text").text("");
+      $(".add_to_cart_custom_button").show();
     }
   });
 
