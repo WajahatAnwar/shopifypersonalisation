@@ -217,7 +217,9 @@ var myAppJavaScript = function($) {
       product_color_valid === "" &&
       product_size_valid === ""
     ) {
-      $("#validation_text").text(" Color and Font are not selected !");
+      $("#validation_text").text(
+        "Colors, Fonts, Product Color and Product Size are not selected !"
+      );
       $(".add_to_cart_custom_button").hide();
     } else if (
       color_valid === "" &&
@@ -312,7 +314,9 @@ var myAppJavaScript = function($) {
       product_color_valid === "" &&
       product_size_valid === ""
     ) {
-      $("#validation_text").text(" Color and Font are not selected !");
+      $("#validation_text").text(
+        "Colors, Fonts, Product Color and Product Size are not selected !"
+      );
       $(".add_to_cart_custom_button").hide();
     } else if (
       color_valid === "" &&
@@ -408,7 +412,9 @@ var myAppJavaScript = function($) {
       product_color_valid === "" &&
       product_size_valid === ""
     ) {
-      $("#validation_text").text(" Color and Font are not selected !");
+      $("#validation_text").text(
+        "Colors, Fonts, Product Color and Product Size are not selected !"
+      );
       $(".add_to_cart_custom_button").hide();
     } else if (
       color_valid === "" &&
@@ -504,7 +510,9 @@ var myAppJavaScript = function($) {
       product_color_valid === "" &&
       product_size_valid === ""
     ) {
-      $("#validation_text").text(" Color and Font are not selected !");
+      $("#validation_text").text(
+        "Colors, Fonts, Product Color and Product Size are not selected !"
+      );
       $(".add_to_cart_custom_button").hide();
     } else if (
       color_valid === "" &&
@@ -602,7 +610,9 @@ var myAppJavaScript = function($) {
       product_color_valid === "" &&
       product_size_valid === ""
     ) {
-      $("#validation_text").text(" Color and Font are not selected !");
+      $("#validation_text").text(
+        "Colors, Fonts, Product Color and Product Size are not selected !"
+      );
       $(".add_to_cart_custom_button").hide();
     } else if (
       color_valid === "" &&
@@ -700,7 +710,9 @@ var myAppJavaScript = function($) {
       product_color_valid === "" &&
       product_size_valid === ""
     ) {
-      $("#validation_text").text(" Color and Font are not selected !");
+      $("#validation_text").text(
+        "Colors, Fonts, Product Color and Product Size are not selected !"
+      );
       $(".add_to_cart_custom_button").hide();
     } else if (
       color_valid === "" &&
@@ -837,7 +849,9 @@ var myAppJavaScript = function($) {
       product_color_valid === "" &&
       product_size_valid === ""
     ) {
-      $("#validation_text").text(" Color and Font are not selected !");
+      $("#validation_text").text(
+        "Colors, Fonts, Product Color and Product Size are not selected !"
+      );
       $(".add_to_cart_custom_button").hide();
     } else if (
       color_valid === "" &&
