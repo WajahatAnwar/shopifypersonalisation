@@ -208,15 +208,66 @@ var myAppJavaScript = function($) {
 
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
+    product_color_valid = $("#product_color23").val();
+    product_size_valid = $("#size_field23").val();
 
-    if ((color_valid === "") & (font_valid === "")) {
+    if (
+      color_valid === "" &&
+      font_valid === "" &&
+      product_color_valid === "" &&
+      product_size_valid === ""
+    ) {
       $("#validation_text").text(" Color and Font are not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (color_valid === "" && font_valid !== "") {
+    } else if (
+      color_valid === "" &&
+      font_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Color is not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (font_valid === "" && color_valid !== "") {
+    } else if (
+      font_valid === "" &&
+      color_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Font is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_size_valid === "" &&
+      font_valid !== "" &&
+      color_valid !== "" &&
+      product_color_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Size is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Color is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid === ""
+    ) {
+      $("#validation_text").text(
+        " Product Color and Product Size is not selected !"
+      );
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid !== "" &&
+      color_valid === "" &&
+      font_valid === "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text("Color and Font is not selected !");
       $(".add_to_cart_custom_button").hide();
     } else {
       $("#validation_text").text("");
@@ -252,15 +303,66 @@ var myAppJavaScript = function($) {
 
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
+    product_color_valid = $("#product_color23").val();
+    product_size_valid = $("#size_field23").val();
 
-    if ((color_valid === "") & (font_valid === "")) {
+    if (
+      color_valid === "" &&
+      font_valid === "" &&
+      product_color_valid === "" &&
+      product_size_valid === ""
+    ) {
       $("#validation_text").text(" Color and Font are not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (color_valid === "" && font_valid !== "") {
+    } else if (
+      color_valid === "" &&
+      font_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Color is not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (font_valid === "" && color_valid !== "") {
+    } else if (
+      font_valid === "" &&
+      color_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Font is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_size_valid === "" &&
+      font_valid !== "" &&
+      color_valid !== "" &&
+      product_color_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Size is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Color is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid === ""
+    ) {
+      $("#validation_text").text(
+        " Product Color and Product Size is not selected !"
+      );
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid !== "" &&
+      color_valid === "" &&
+      font_valid === "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text("Color and Font is not selected !");
       $(".add_to_cart_custom_button").hide();
     } else {
       $("#validation_text").text("");
@@ -297,15 +399,66 @@ var myAppJavaScript = function($) {
 
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
+    product_color_valid = $("#product_color23").val();
+    product_size_valid = $("#size_field23").val();
 
-    if ((color_valid === "") & (font_valid === "")) {
+    if (
+      color_valid === "" &&
+      font_valid === "" &&
+      product_color_valid === "" &&
+      product_size_valid === ""
+    ) {
       $("#validation_text").text(" Color and Font are not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (color_valid === "" && font_valid !== "") {
+    } else if (
+      color_valid === "" &&
+      font_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Color is not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (font_valid === "" && color_valid !== "") {
+    } else if (
+      font_valid === "" &&
+      color_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Font is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_size_valid === "" &&
+      font_valid !== "" &&
+      color_valid !== "" &&
+      product_color_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Size is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Color is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid === ""
+    ) {
+      $("#validation_text").text(
+        " Product Color and Product Size is not selected !"
+      );
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid !== "" &&
+      color_valid === "" &&
+      font_valid === "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text("Color and Font is not selected !");
       $(".add_to_cart_custom_button").hide();
     } else {
       $("#validation_text").text("");
@@ -342,15 +495,66 @@ var myAppJavaScript = function($) {
 
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
+    product_color_valid = $("#product_color23").val();
+    product_size_valid = $("#size_field23").val();
 
-    if ((color_valid === "") & (font_valid === "")) {
+    if (
+      color_valid === "" &&
+      font_valid === "" &&
+      product_color_valid === "" &&
+      product_size_valid === ""
+    ) {
       $("#validation_text").text(" Color and Font are not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (color_valid === "" && font_valid !== "") {
+    } else if (
+      color_valid === "" &&
+      font_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Color is not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (font_valid === "" && color_valid !== "") {
+    } else if (
+      font_valid === "" &&
+      color_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Font is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_size_valid === "" &&
+      font_valid !== "" &&
+      color_valid !== "" &&
+      product_color_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Size is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Color is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid === ""
+    ) {
+      $("#validation_text").text(
+        " Product Color and Product Size is not selected !"
+      );
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid !== "" &&
+      color_valid === "" &&
+      font_valid === "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text("Color and Font is not selected !");
       $(".add_to_cart_custom_button").hide();
     } else {
       $("#validation_text").text("");
@@ -389,15 +593,66 @@ var myAppJavaScript = function($) {
 
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
+    product_color_valid = $("#product_color23").val();
+    product_size_valid = $("#size_field23").val();
 
-    if ((color_valid === "") & (font_valid === "")) {
+    if (
+      color_valid === "" &&
+      font_valid === "" &&
+      product_color_valid === "" &&
+      product_size_valid === ""
+    ) {
       $("#validation_text").text(" Color and Font are not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (color_valid === "" && font_valid !== "") {
+    } else if (
+      color_valid === "" &&
+      font_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Color is not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (font_valid === "" && color_valid !== "") {
+    } else if (
+      font_valid === "" &&
+      color_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Font is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_size_valid === "" &&
+      font_valid !== "" &&
+      color_valid !== "" &&
+      product_color_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Size is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Color is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid === ""
+    ) {
+      $("#validation_text").text(
+        " Product Color and Product Size is not selected !"
+      );
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid !== "" &&
+      color_valid === "" &&
+      font_valid === "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text("Color and Font is not selected !");
       $(".add_to_cart_custom_button").hide();
     } else {
       $("#validation_text").text("");
@@ -436,15 +691,66 @@ var myAppJavaScript = function($) {
 
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
+    product_color_valid = $("#product_color23").val();
+    product_size_valid = $("#size_field23").val();
 
-    if ((color_valid === "") & (font_valid === "")) {
+    if (
+      color_valid === "" &&
+      font_valid === "" &&
+      product_color_valid === "" &&
+      product_size_valid === ""
+    ) {
       $("#validation_text").text(" Color and Font are not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (color_valid === "" && font_valid !== "") {
+    } else if (
+      color_valid === "" &&
+      font_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Color is not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (font_valid === "" && color_valid !== "") {
+    } else if (
+      font_valid === "" &&
+      color_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Font is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_size_valid === "" &&
+      font_valid !== "" &&
+      color_valid !== "" &&
+      product_color_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Size is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Color is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid === ""
+    ) {
+      $("#validation_text").text(
+        " Product Color and Product Size is not selected !"
+      );
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid !== "" &&
+      color_valid === "" &&
+      font_valid === "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text("Color and Font is not selected !");
       $(".add_to_cart_custom_button").hide();
     } else {
       $("#validation_text").text("");
@@ -522,15 +828,66 @@ var myAppJavaScript = function($) {
 
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
+    product_color_valid = $("#product_color23").val();
+    product_size_valid = $("#size_field23").val();
 
-    if ((color_valid === "") & (font_valid === "")) {
+    if (
+      color_valid === "" &&
+      font_valid === "" &&
+      product_color_valid === "" &&
+      product_size_valid === ""
+    ) {
       $("#validation_text").text(" Color and Font are not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (color_valid === "" && font_valid !== "") {
+    } else if (
+      color_valid === "" &&
+      font_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Color is not selected !");
       $(".add_to_cart_custom_button").hide();
-    } else if (font_valid === "" && color_valid !== "") {
+    } else if (
+      font_valid === "" &&
+      color_valid !== "" &&
+      product_color_valid !== "" &&
+      product_size_valid !== ""
+    ) {
       $("#validation_text").text(" Font is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_size_valid === "" &&
+      font_valid !== "" &&
+      color_valid !== "" &&
+      product_color_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Size is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text(" Product Color is not selected !");
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid === "" &&
+      color_valid !== "" &&
+      font_valid !== "" &&
+      product_size_valid === ""
+    ) {
+      $("#validation_text").text(
+        " Product Color and Product Size is not selected !"
+      );
+      $(".add_to_cart_custom_button").hide();
+    } else if (
+      product_color_valid !== "" &&
+      color_valid === "" &&
+      font_valid === "" &&
+      product_size_valid !== ""
+    ) {
+      $("#validation_text").text("Color and Font is not selected !");
       $(".add_to_cart_custom_button").hide();
     } else {
       $("#validation_text").text("");
