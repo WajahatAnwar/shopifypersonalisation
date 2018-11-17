@@ -98,7 +98,7 @@ var myAppJavaScript = function($) {
       .find(":selected")
       .text();
     console.log(type);
-    $("#dynamic_height").css("height", "700px");
+    $("#dynamic_height").css("height", "762px");
     if (type == "Front Embroidery") {
       $("input[value='Front Embroidery']").trigger("click");
       $("input[name=rush_hour_check]").prop("checked", false);
