@@ -126,10 +126,13 @@ class ShopifyController extends Controller
 	public function save_variants()
 	{
 		$product_ids = $_POST['trigger_product'];
-		$product_price = $_POST['product_price'];
+		// $product_price = $_POST['product_price'];
 		$dash_pos = strpos($product_ids, "-");
+		$dash_price = strpos($product_ids, "/");
 		$product_id = substr($product_ids, 0, $dash_pos);
 		$product_name = substr($product_ids, $dash_pos+1);
+		$product_price = substr($product_ids, $dash_price+1);
+		dd($product_price);
 
 		$shopify_store_id = $_POST['shopify_store_id'];
 
