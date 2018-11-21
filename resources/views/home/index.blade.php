@@ -131,13 +131,16 @@
 								@if(!empty($shop_products))
 									@foreach ($shop_products as $product)
 									{{ $variable = true }} 
+									{{ $pricing }}
 										@foreach ($product->variants as $variant)
 											@if ($variant->option1 == "Front Embroidery")
 												{{ $variable = false }} 
+											@else
+												{{ $pricing =  $variant->price }}
 											@endif
 										@endforeach
 										@if($variable)
-											<option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}</option>
+											<option value="{{ $product->id }}-{{ $product->title }}/{{ $pricing }}">{{ $product->title }}</option>
 										@endif
 									@endforeach
 								@endif
