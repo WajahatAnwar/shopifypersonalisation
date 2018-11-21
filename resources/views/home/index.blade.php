@@ -147,7 +147,7 @@
 							</select>
 
 						</div>
-						<div class="row">
+						<div class="row" style="display:none;">
 							<label for="product_price">product_price</label>
 							<input type="text" name="product_price" id="product_price" placeholder="Enter Price of this Product">
 						</div>
