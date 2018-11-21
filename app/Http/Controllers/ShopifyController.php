@@ -132,7 +132,6 @@ class ShopifyController extends Controller
 		$product_id = substr($product_ids, 0, $dash_pos);
 		$product_name = substr($product_ids, $dash_pos+1);
 		$product_price = substr($product_ids, $dash_price+1);
-		dd($product_price);
 
 		$shopify_store_id = $_POST['shopify_store_id'];
 
