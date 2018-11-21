@@ -137,7 +137,7 @@
 											@endif
 										@endforeach
 										@if($variable)
-											<option value="{{ $product->id }}-{{ $product->title }}\{{ $product->price }}">{{ $product->title }}</option>
+											<option value="{{ $product->id }}-{{ $product->title }}">{{ $product->title }}</option>
 										@endif
 									@endforeach
 								@endif
