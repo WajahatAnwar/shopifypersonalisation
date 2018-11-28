@@ -138,8 +138,8 @@ class ShopifyController extends Controller
 
 			$postData1 = [
 				"option1" => "Front Embroidery",
-				"option2" => "Front Embroidery",
-				"option3" => "Front Embroidery",
+				// "option2" => "Front Embroidery",
+				// "option3" => "Front Embroidery",
 				"price" => $product_price + 7.95
 			];
 			$data1 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -148,8 +148,8 @@ class ShopifyController extends Controller
 
 			$postData2 = [
 				"option1" => "Back Embroidery",
-				"option2" => "Back Embroidery",
-				"option3" => "Back Embroidery",
+				// "option2" => "Back Embroidery",
+				// "option3" => "Back Embroidery",
 				"price" => $product_price + 12.95
 			];
 			$data2 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -158,8 +158,8 @@ class ShopifyController extends Controller
 				
 			$postData3 = [
 							"option1" => "Front & Back Embroidery",
-							"option2" => "Front & Back Embroidery",
-							"option3" => "Front & Back Embroidery",
+							// "option2" => "Front & Back Embroidery",
+							// "option3" => "Front & Back Embroidery",
 							"price" => $product_price + 31.8
 						];
 			$data3 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -168,8 +168,8 @@ class ShopifyController extends Controller
 			
 			$postData4 = [
 							"option1" => "Double Front Embroidery",
-							"option2" => "Double Front Embroidery",
-							"option3" => "Double Front Embroidery",
+							// "option2" => "Double Front Embroidery",
+							// "option3" => "Double Front Embroidery",
 							"price" => $product_price + 11.9
 						];
 			$data4 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -178,8 +178,8 @@ class ShopifyController extends Controller
 			
 			$postData5 = [
 							"option1" => "Double Back Embroidery",
-							"option2" => "Double Back Embroidery",
-							"option3" => "Double Back Embroidery",
+							// "option2" => "Double Back Embroidery",
+							// "option3" => "Double Back Embroidery",
 							"price" => $product_price + 19.9
 						];
 			$data5 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -188,8 +188,8 @@ class ShopifyController extends Controller
 			
 			$postData6 = [
 							"option1" => "Front Rush",
-							"option2" => "Front Rush",
-							"option3" => "Front Rush",
+							// "option2" => "Front Rush",
+							// "option3" => "Front Rush",
 							"price" => $product_price + 7.95 + 5
 						];
 			$data6 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -198,8 +198,8 @@ class ShopifyController extends Controller
 			
 			$postData7 = [
 							"option1" => "Back Rush",
-							"option2" => "Back Rush",
-							"option3" => "Back Rush",
+							// "option2" => "Back Rush",
+							// "option3" => "Back Rush",
 							"price" => $product_price + 12.95 + 5
 						];
 			$data7 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -208,8 +208,8 @@ class ShopifyController extends Controller
 			
 			$postData8 = [
 							"option1" => "Front & Back Rush",
-							"option2" => "Front & Back Rush",
-							"option3" => "Front & Back Rush",
+							// "option2" => "Front & Back Rush",
+							// "option3" => "Front & Back Rush",
 							"price" => $product_price + 31.8 + 5
 						];
 			$data8 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -218,8 +218,8 @@ class ShopifyController extends Controller
 			
 			$postData9 = [
 							"option1" => "Double Front Rush",
-							"option2" => "Double Front Rush",
-							"option3" => "Double Front Rush",
+							// "option2" => "Double Front Rush",
+							// "option3" => "Double Front Rush",
 							"price" => $product_price + 11.9 + 5
 						];
 			$data9 = $this->shopify->setShopUrl(session('myshopifyDomain'))
@@ -228,8 +228,8 @@ class ShopifyController extends Controller
 			
 			$postData10 = [
 							"option1" => "Double Back Rush",
-							"option2" => "Double Back Rush",
-							"option3" => "Double Back Rush",
+							// "option2" => "Double Back Rush",
+							// "option3" => "Double Back Rush",
 							"price" => $product_price + 19.9 + 5
 						];
 			$data10 = $this->shopify->setShopUrl(session('myshopifyDomain'))
