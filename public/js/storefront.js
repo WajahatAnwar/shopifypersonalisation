@@ -30,6 +30,10 @@ var myAppJavaScript = function($) {
   $(".double-front-rush").hide();
   $(".double-back-rush").hide();
 
+  if ( $( ".product_size" ).length ) {
+    $("size_field23").val("General");
+  }
+
   var selected_embroidery;
   var meta_front_back = $("#front_back_key").val();
   var meta_front = $("#front_key").val();
