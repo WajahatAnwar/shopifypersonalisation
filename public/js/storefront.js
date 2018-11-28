@@ -118,6 +118,7 @@ var myAppJavaScript = function($) {
   });
 
   $("input[value='Front Embroidery']").click(function() {
+    console.log("Click Happened Front Embroidery");
     $(".ecom-modal").show();
     $(".front_embroidery").show();
     $(".back_embroidery").hide();
@@ -138,6 +139,7 @@ var myAppJavaScript = function($) {
   });
 
   $("input[value='Back Embroidery']").click(function() {
+    console.log("Click Happened Back Embroidery");
     $(".ecom-modal").show();
     $(".back_embroidery").show();
     $(".front_embroidery").hide();
@@ -158,6 +160,7 @@ var myAppJavaScript = function($) {
   });
 
   $("input[value='Front & Back Embroidery']").click(function() {
+    console.log("Click Happened Front & Back Embroidery");
     $(".ecom-modal").show();
     $(".front_back_embroidery").show();
     $(".front_embroidery").hide();
