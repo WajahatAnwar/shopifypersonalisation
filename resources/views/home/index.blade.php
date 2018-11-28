@@ -39,7 +39,7 @@
 							</select>
 						</div>
 						<div class="row">
-							<label>Product & Disable Key Type</label>
+							<label>Disable Key Type</label>
 							<select name="type_option" id="type_option">
 								<option value="front_embroidery">Front Embroidery</option>
 								<option value="back_embroidery">Back Embroidery</option>
@@ -88,7 +88,7 @@
 							</select>
 						</div>
 						<div class="row">
-							<label>Product & Disable Key Type</label>
+							<label>Type of Product</label>
 							<select name="type_option" id="type_option">
 								<option value="wrap">Wrap</option>
 								<option value="towel">Towel</option>
