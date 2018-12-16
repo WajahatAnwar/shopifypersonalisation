@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+
 use DB;
 use Log;
 use App\Shop;
@@ -10,104 +11,98 @@ use Oseintow\Shopify\Shopify;
 use App\Objects\ShopifyWebhook;
 use Oseintow\Shopify\Exceptions\ShopifyApiException;
 use App\ShopInfo;
+
 class ShopifyController extends Controller
 {
-    protected $shopify;
-    function __construct(Shopify $shopify)
-    {
-    	$this->shopify = $shopify;
-    }
-    public function access(Request $request)
-    {
-    	
-    	$shopUrl = $request->shop;
-    	if($shopUrl)
-    	{
-    		$shop = Shop::where('myshopify_domain' , $shopUrl)->first();
-    		if($shop)
-    		{
-    			session([
-    					'shopifyId' => $shop->shopify_id,
-    					'myshopifyDomain' => $shop->myshopify_domain,
-    					'accessToken' => $shop->access_token
-					]);
+	protected $shopify;
+	function __construct(Shopify $shopify)
+	{
+		$this->shopify = $shopify;
+	}
+	public function access(Request $request)
+	{
+
+		$shopUrl = $request->shop;
+		if ($shopUrl) {
+			$shop = Shop::where('myshopify_domain', $shopUrl)->first();
+			if ($shop) {
+				session([
+					'shopifyId' => $shop->shopify_id,
+					'myshopifyDomain' => $shop->myshopify_domain,
+					'accessToken' => $shop->access_token
+				]);
 				$this->create_template();
 				$shopProducts = $this->shopify->setShopUrl($shop->myshopify_domain)
-				->setAccessToken($shop->access_token)
-				->get('admin/products.json',[ 'limit' => 250 , 'page' => 1 ]);
+					->setAccessToken($shop->access_token)
+					->get('admin/products.json', ['limit' => 250, 'page' => 1]);
 				// dd($shopProducts);
 				// dd();
-				$product_disable_key = DB::Table('product_disable_key')->where('shopify_store_id', session('shopifyId') )->get();
-				return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key, 'success' => '2']);
+				$product_disable_key = DB::Table('product_disable_key')->where('shopify_store_id', session('shopifyId'))->get();
+				return view('home.index', ['shop' => $shop, 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key, 'success' => '2']);
 
-    		}
-    		else{
-    			$shopify = $this->shopify->setShopUrl($shopUrl);
-    			return redirect()->to($shopify->getAuthorizeUrl(config('shopify.scope') , config('shopify.redirect_uri')));
-    		}
-    	}
-    	else{
-    		abort(404);
-    	}
-    }
-    public function callback(Request $request)
-    {
+			} else {
+				$shopify = $this->shopify->setShopUrl($shopUrl);
+				return redirect()->to($shopify->getAuthorizeUrl(config('shopify.scope'), config('shopify.redirect_uri')));
+			}
+		} else {
+			abort(404);
+		}
+	}
+	public function callback(Request $request)
+	{
 		$queryString = $request->getQueryString();
-		
-    	if($this->shopify->verifyRequest($queryString))
-    	{
-    		$shopUrl = $request->shop;
-    		try{
-    			$accessToken = $this->shopify->setShopUrl($shopUrl)->getAccessToken($request->code);
-    			$shopResponse = $this->shopify->setShopUrl($shopUrl)
-    										  ->setAccessToken($accessToken)
-    										  ->get('admin/shop.json');
-  				if($shopResponse)
-  				{
-  					session([
-  							'shopifyId' => $shopResponse['id'],
-  							'myshopifyDomain' => $shopUrl,
-  							'accessToken' => $accessToken
+
+		if ($this->shopify->verifyRequest($queryString)) {
+			$shopUrl = $request->shop;
+			try {
+				$accessToken = $this->shopify->setShopUrl($shopUrl)->getAccessToken($request->code);
+				$shopResponse = $this->shopify->setShopUrl($shopUrl)
+					->setAccessToken($accessToken)
+					->get('admin/shop.json');
+				if ($shopResponse) {
+					session([
+						'shopifyId' => $shopResponse['id'],
+						'myshopifyDomain' => $shopUrl,
+						'accessToken' => $accessToken
 					]);
-					
+
 					$shop = $this->createShop($shopResponse);
 					$this->createDefaultSettings($shop);
 					$this->storeShopInfo($shopResponse, $shop->id);
 					ShopifyWebhook::registerAppUninstallWebhook();
-					if(config('shopify.billing_enabled'))
-					{
+					if (config('shopify.billing_enabled')) {
 						return redirect()->route('billing.charge');
 					}
-		
+
 					ScriptTag::register();
-					  
-  					return redirect("https://{$shopUrl}/admin/apps");
-  				}
-    		} catch (ShopifyApiException $e) {
-				Log::critical("Installation Callback exception." , ['message' => $e->getMessage(), 'shop' => $shopUrl]);
+
+					return redirect("https://{$shopUrl}/admin/apps");
+				}
+			} catch (ShopifyApiException $e) {
+				Log::critical("Installation Callback exception.", ['message' => $e->getMessage(), 'shop' => $shopUrl]);
 				abort(500);
-    		}
-    	}else{
-			abort(500,"Hmm, Something doesn't look right.");
+			}
+		} else {
+			abort(500, "Hmm, Something doesn't look right.");
 		}
-    }
-   	protected function createShop($data)
+	}
+	protected function createShop($data)
 	{
 		return Shop::create([
-				'shopify_id' => $data['id'],
-				'myshopify_domain' => $data['myshopify_domain'],
-				'access_token' => session('accessToken')
+			'shopify_id' => $data['id'],
+			'myshopify_domain' => $data['myshopify_domain'],
+			'access_token' => session('accessToken')
 		]);
 	}
 	protected function createDefaultSettings($shop)
-    {
-        return $settings = Setting::create([
-            'enabled' => 1,
-            'shop_id' => $shop->id,
-            'myshopify_domain' => $shop->myshopify_domain
-        ]);
+	{
+		return $settings = Setting::create([
+			'enabled' => 1,
+			'shop_id' => $shop->id,
+			'myshopify_domain' => $shop->myshopify_domain
+		]);
 	}
-	
+
 	protected function storeShopInfo($data, $shopId)
 	{
 		unset($data['id']);
@@ -117,10 +112,10 @@ class ShopifyController extends Controller
 
 	public function save_data()
 	{
-		$shopUrl= session('myshopifyDomain');
-		$shop = Shop::where('myshopify_domain' , $shopUrl)->first();
+		$shopUrl = session('myshopifyDomain');
+		$shop = Shop::where('myshopify_domain', $shopUrl)->first();
 
-				return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, 'success' => '1']);
+		return view('home.index', ['shop' => $shop, 'settings' => $shop->settings, 'success' => '1']);
 	}
 
 	public function save_variants()
@@ -130,120 +125,120 @@ class ShopifyController extends Controller
 		$dash_pos = strpos($product_ids, "-");
 		$dash_price = strpos($product_ids, "/");
 		$product_id = substr($product_ids, 0, $dash_pos);
-		$product_name = substr($product_ids, $dash_pos+1);
-		$product_price = substr($product_ids, $dash_price+1);
+		$product_name = substr($product_ids, $dash_pos + 1);
+		$product_price = substr($product_ids, $dash_price + 1);
 
 		$shopify_store_id = $_POST['shopify_store_id'];
 
 
-			$postData1 = [
-				"option1" => "Front Embroidery",
-				// "option2" => "Front Embroidery",
+		$postData1 = [
+			"option1" => "Front Embroidery",
+			"option2" => "Front Embroidery",
 				// "option3" => "Front Embroidery",
-				"price" => $product_price + 7.95
-			];
-			$data1 = $this->shopify->setShopUrl(session('myshopifyDomain'))
-					->setAccessToken(session('accessToken'))
-					->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData1 ]);
+			"price" => $product_price + 7.95
+		];
+		$data1 = $this->shopify->setShopUrl(session('myshopifyDomain'))
+			->setAccessToken(session('accessToken'))
+			->post("/admin/products/" . $product_id . "/variants.json", ['variant' => $postData1]);
 
-			$postData2 = [
-				"option1" => "Back Embroidery",
-				// "option2" => "Back Embroidery",
+		$postData2 = [
+			"option1" => "Back Embroidery",
+			"option2" => "Back Embroidery",
 				// "option3" => "Back Embroidery",
-				"price" => $product_price + 12.95
-			];
-			$data2 = $this->shopify->setShopUrl(session('myshopifyDomain'))
-					->setAccessToken(session('accessToken'))
-					->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData2 ]);
-				
-			$postData3 = [
-							"option1" => "Front & Back Embroidery",
-							// "option2" => "Front & Back Embroidery",
-							// "option3" => "Front & Back Embroidery",
-							"price" => $product_price + 31.8
-						];
-			$data3 = $this->shopify->setShopUrl(session('myshopifyDomain'))
-									->setAccessToken(session('accessToken'))
-									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData3 ]);
-			
-			$postData4 = [
-							"option1" => "Double Front Embroidery",
-							// "option2" => "Double Front Embroidery",
-							// "option3" => "Double Front Embroidery",
-							"price" => $product_price + 11.9
-						];
-			$data4 = $this->shopify->setShopUrl(session('myshopifyDomain'))
-									->setAccessToken(session('accessToken'))
-									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData4 ]);
-			
-			$postData5 = [
-							"option1" => "Double Back Embroidery",
-							// "option2" => "Double Back Embroidery",
-							// "option3" => "Double Back Embroidery",
-							"price" => $product_price + 19.9
-						];
-			$data5 = $this->shopify->setShopUrl(session('myshopifyDomain'))
-									->setAccessToken(session('accessToken'))
-									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData5 ]);
-			
-			$postData6 = [
-							"option1" => "Front Rush",
-							// "option2" => "Front Rush",
-							// "option3" => "Front Rush",
-							"price" => $product_price + 7.95 + 5
-						];
-			$data6 = $this->shopify->setShopUrl(session('myshopifyDomain'))
-									->setAccessToken(session('accessToken'))
-									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData6 ]);
-			
-			$postData7 = [
-							"option1" => "Back Rush",
-							// "option2" => "Back Rush",
-							// "option3" => "Back Rush",
-							"price" => $product_price + 12.95 + 5
-						];
-			$data7 = $this->shopify->setShopUrl(session('myshopifyDomain'))
-									->setAccessToken(session('accessToken'))
-									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData7 ]);
-			
-			$postData8 = [
-							"option1" => "Front & Back Rush",
-							// "option2" => "Front & Back Rush",
-							// "option3" => "Front & Back Rush",
-							"price" => $product_price + 31.8 + 5
-						];
-			$data8 = $this->shopify->setShopUrl(session('myshopifyDomain'))
-									->setAccessToken(session('accessToken'))
-									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData8 ]);
-			
-			$postData9 = [
-							"option1" => "Double Front Rush",
-							// "option2" => "Double Front Rush",
-							// "option3" => "Double Front Rush",
-							"price" => $product_price + 11.9 + 5
-						];
-			$data9 = $this->shopify->setShopUrl(session('myshopifyDomain'))
-									->setAccessToken(session('accessToken'))
-									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData9 ]);
-			
-			$postData10 = [
-							"option1" => "Double Back Rush",
-							// "option2" => "Double Back Rush",
-							// "option3" => "Double Back Rush",
-							"price" => $product_price + 19.9 + 5
-						];
-			$data10 = $this->shopify->setShopUrl(session('myshopifyDomain'))
-									->setAccessToken(session('accessToken'))
-									->post("/admin/products/".$product_id."/variants.json", [ 'variant' => $postData10 ]);
+			"price" => $product_price + 12.95
+		];
+		$data2 = $this->shopify->setShopUrl(session('myshopifyDomain'))
+			->setAccessToken(session('accessToken'))
+			->post("/admin/products/" . $product_id . "/variants.json", ['variant' => $postData2]);
 
-		$shopUrl= session('myshopifyDomain');
+		$postData3 = [
+			"option1" => "Front & Back Embroidery",
+			"option2" => "Front & Back Embroidery",
+							// "option3" => "Front & Back Embroidery",
+			"price" => $product_price + 31.8
+		];
+		$data3 = $this->shopify->setShopUrl(session('myshopifyDomain'))
+			->setAccessToken(session('accessToken'))
+			->post("/admin/products/" . $product_id . "/variants.json", ['variant' => $postData3]);
+
+		$postData4 = [
+			"option1" => "Double Front Embroidery",
+			"option2" => "Double Front Embroidery",
+							// "option3" => "Double Front Embroidery",
+			"price" => $product_price + 11.9
+		];
+		$data4 = $this->shopify->setShopUrl(session('myshopifyDomain'))
+			->setAccessToken(session('accessToken'))
+			->post("/admin/products/" . $product_id . "/variants.json", ['variant' => $postData4]);
+
+		$postData5 = [
+			"option1" => "Double Back Embroidery",
+			"option2" => "Double Back Embroidery",
+							// "option3" => "Double Back Embroidery",
+			"price" => $product_price + 19.9
+		];
+		$data5 = $this->shopify->setShopUrl(session('myshopifyDomain'))
+			->setAccessToken(session('accessToken'))
+			->post("/admin/products/" . $product_id . "/variants.json", ['variant' => $postData5]);
+
+		$postData6 = [
+			"option1" => "Front Rush",
+			"option2" => "Front Rush",
+							// "option3" => "Front Rush",
+			"price" => $product_price + 7.95 + 5
+		];
+		$data6 = $this->shopify->setShopUrl(session('myshopifyDomain'))
+			->setAccessToken(session('accessToken'))
+			->post("/admin/products/" . $product_id . "/variants.json", ['variant' => $postData6]);
+
+		$postData7 = [
+			"option1" => "Back Rush",
+			"option2" => "Back Rush",
+							// "option3" => "Back Rush",
+			"price" => $product_price + 12.95 + 5
+		];
+		$data7 = $this->shopify->setShopUrl(session('myshopifyDomain'))
+			->setAccessToken(session('accessToken'))
+			->post("/admin/products/" . $product_id . "/variants.json", ['variant' => $postData7]);
+
+		$postData8 = [
+			"option1" => "Front & Back Rush",
+			"option2" => "Front & Back Rush",
+							// "option3" => "Front & Back Rush",
+			"price" => $product_price + 31.8 + 5
+		];
+		$data8 = $this->shopify->setShopUrl(session('myshopifyDomain'))
+			->setAccessToken(session('accessToken'))
+			->post("/admin/products/" . $product_id . "/variants.json", ['variant' => $postData8]);
+
+		$postData9 = [
+			"option1" => "Double Front Rush",
+			"option2" => "Double Front Rush",
+							// "option3" => "Double Front Rush",
+			"price" => $product_price + 11.9 + 5
+		];
+		$data9 = $this->shopify->setShopUrl(session('myshopifyDomain'))
+			->setAccessToken(session('accessToken'))
+			->post("/admin/products/" . $product_id . "/variants.json", ['variant' => $postData9]);
+
+		$postData10 = [
+			"option1" => "Double Back Rush",
+			"option2" => "Double Back Rush",
+							// "option3" => "Double Back Rush",
+			"price" => $product_price + 19.9 + 5
+		];
+		$data10 = $this->shopify->setShopUrl(session('myshopifyDomain'))
+			->setAccessToken(session('accessToken'))
+			->post("/admin/products/" . $product_id . "/variants.json", ['variant' => $postData10]);
+
+		$shopUrl = session('myshopifyDomain');
 		$shopify_id = session('shopifyId');
-		$shop = Shop::where('myshopify_domain' , $shopUrl)->first();
+		$shop = Shop::where('myshopify_domain', $shopUrl)->first();
 		$shopProducts = $this->shopify->setShopUrl($shop->myshopify_domain)
-					->setAccessToken($shop->access_token)
-					->get('admin/products.json',[ 'limit' => 250 , 'page' => 1 ]);
-		$product_disable_key = DB::Table('product_disable_key')->where('shopify_store_id', $shopify_id )->get();
-		return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key,'success' => '7']);
+			->setAccessToken($shop->access_token)
+			->get('admin/products.json', ['limit' => 250, 'page' => 1]);
+		$product_disable_key = DB::Table('product_disable_key')->where('shopify_store_id', $shopify_id)->get();
+		return view('home.index', ['shop' => $shop, 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key, 'success' => '7']);
 	}
 
 	public function save_disable_key()
@@ -251,54 +246,48 @@ class ShopifyController extends Controller
 		$product_ids = $_POST['trigger_product'];
 		$dash_pos = strpos($product_ids, "-");
 		$product_id = substr($product_ids, 0, $dash_pos);
-		$product_name = substr($product_ids, $dash_pos+1);
+		$product_name = substr($product_ids, $dash_pos + 1);
 
 		$disable_key = $_POST['type_option'];
 		$shopify_store_id = $_POST['shopify_store_id'];
 
 		$meta_key_value = $_POST['type_option'];
-		if($meta_key_value == "front_embroidery")
-		{
+		if ($meta_key_value == "front_embroidery") {
 			$postData = [
 				"namespace" => "disable_robe_key",
 				"key" => "front_key",
 				"value" => $meta_key_value,
 				"value_type" => "string"
 			];
-		}else if($meta_key_value == "back_embroidery")
-		{
+		} else if ($meta_key_value == "back_embroidery") {
 			$postData = [
 				"namespace" => "disable_robe_key",
 				"key" => "back_key",
 				"value" => $meta_key_value,
 				"value_type" => "string"
 			];
-		}else if($meta_key_value == "front_back_embroidery")
-		{
+		} else if ($meta_key_value == "front_back_embroidery") {
 			$postData = [
 				"namespace" => "disable_robe_key",
 				"key" => "front_back_keys",
 				"value" => $meta_key_value,
 				"value_type" => "string"
 			];
-		}else if($meta_key_value == "second_front_back_embroidery")
-		{
+		} else if ($meta_key_value == "second_front_back_embroidery") {
 			$postData = [
 				"namespace" => "disable_robe_key",
 				"key" => "second_front_back_key",
 				"value" => $meta_key_value,
 				"value_type" => "string"
 			];
-		}else if($meta_key_value == "wrap")
-		{
+		} else if ($meta_key_value == "wrap") {
 			$postData = [
 				"namespace" => "disable_robe_key",
 				"key" => "wrap",
 				"value" => $meta_key_value,
 				"value_type" => "string"
 			];
-		}else if($meta_key_value == "towel")
-		{
+		} else if ($meta_key_value == "towel") {
 			$postData = [
 				"namespace" => "disable_robe_key",
 				"key" => "towel",
@@ -308,35 +297,35 @@ class ShopifyController extends Controller
 		}
 
 		$data = $this->shopify->setShopUrl(session('myshopifyDomain'))
-				 ->setAccessToken(session('accessToken'))
-				 ->post("/admin/products/".$product_id."/metafields.json", [ 'metafield' => $postData ]);
+			->setAccessToken(session('accessToken'))
+			->post("/admin/products/" . $product_id . "/metafields.json", ['metafield' => $postData]);
 
-		$disable_option_key = DB::Table('product_disable_key')->where('product_id', $product_id )->where('disable_key', $disable_key)->first();
-		if(empty($disable_option_key))
-		{
+		$disable_option_key = DB::Table('product_disable_key')->where('product_id', $product_id)->where('disable_key', $disable_key)->first();
+		if (empty($disable_option_key)) {
 			$id = DB::table('product_disable_key')->insertGetId([
 				'shopify_store_id' => $shopify_store_id,
-				'product_id' => $product_id, 
+				'product_id' => $product_id,
 				'product_name' => $product_name,
-				'disable_key' => $disable_key, 
-				'meta_field_id' => $data['id'], 
-				'created_at'=> date('Y-m-d H:i:s'), 
-				'updated_at'=> date('Y-m-d H:i:s')
+				'disable_key' => $disable_key,
+				'meta_field_id' => $data['id'],
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			]);
-		}else{
+		} else {
 			DB::table('product_disable_key')->where('product_id', $product_id)->update([
-				'meta_field_id' => $data['id'], 
-				'updated_at' => date('Y-m-d H:i:s')]);
+				'meta_field_id' => $data['id'],
+				'updated_at' => date('Y-m-d H:i:s')
+			]);
 		}
 
-		$shopUrl= session('myshopifyDomain');
+		$shopUrl = session('myshopifyDomain');
 		$shopify_id = session('shopifyId');
-		$shop = Shop::where('myshopify_domain' , $shopUrl)->first();
+		$shop = Shop::where('myshopify_domain', $shopUrl)->first();
 		$shopProducts = $this->shopify->setShopUrl($shop->myshopify_domain)
-					->setAccessToken($shop->access_token)
-					->get('admin/products.json',[ 'limit' => 250 , 'page' => 1 ]);
-		$product_disable_key = DB::Table('product_disable_key')->where('shopify_store_id', $shopify_id )->get();
-		return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key,'success' => '1']);
+			->setAccessToken($shop->access_token)
+			->get('admin/products.json', ['limit' => 250, 'page' => 1]);
+		$product_disable_key = DB::Table('product_disable_key')->where('shopify_store_id', $shopify_id)->get();
+		return view('home.index', ['shop' => $shop, 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key, 'success' => '1']);
 	}
 
 	public function delete_offer()
@@ -349,20 +338,19 @@ class ShopifyController extends Controller
 		$shopifyId = session('shopifyId');
 
 		$data3 = $this->shopify->setShopUrl($shopUrl)
-				   ->setAccessToken($accessToken)
-					 ->delete("/admin/products/".$product_id."/metafields/".$meta_id.".json");
-		if($data3)
-		{
-			$deleting = DB::table('product_disable_key')->where('shopify_store_id', $shopifyId )
-			->where('meta_field_id', $meta_id)->delete();
+			->setAccessToken($accessToken)
+			->delete("/admin/products/" . $product_id . "/metafields/" . $meta_id . ".json");
+		if ($data3) {
+			$deleting = DB::table('product_disable_key')->where('shopify_store_id', $shopifyId)
+				->where('meta_field_id', $meta_id)->delete();
 		}
-		
-		$shop = Shop::where('myshopify_domain' , $shopUrl)->first();
+
+		$shop = Shop::where('myshopify_domain', $shopUrl)->first();
 		$shopProducts = $this->shopify->setShopUrl($shopUrl)
-					->setAccessToken($accessToken)
-					->get('admin/products.json',[ 'limit' => 250 , 'page' => 1 ]);
-		$product_disable_key = DB::Table('product_disable_key')->where('shopify_store_id', $shopifyId )->get();
-		return view('home.index' , ['shop' => $shop , 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key,'success' => '4']);
+			->setAccessToken($accessToken)
+			->get('admin/products.json', ['limit' => 250, 'page' => 1]);
+		$product_disable_key = DB::Table('product_disable_key')->where('shopify_store_id', $shopifyId)->get();
+		return view('home.index', ['shop' => $shop, 'settings' => $shop->settings, "shop_products" => $shopProducts, "product_disable_key" => $product_disable_key, 'success' => '4']);
 
 	}
 
@@ -371,24 +359,22 @@ class ShopifyController extends Controller
 	// Are responsible for appending this code to product.liquid
 	public function include_template_files()
 	{
-		$shopUrl= session('myshopifyDomain');
-		$accessToken= session('accessToken');
+		$shopUrl = session('myshopifyDomain');
+		$accessToken = session('accessToken');
 		$data = $this->shopify->setShopUrl($shopUrl)->setAccessToken($accessToken)->get('admin/themes.json');
 		$objection = json_decode($data);
 		$name_check = "";
 		$theme_id;
-		foreach($data as $datas)
-		{
-			if($datas->role == "main")
-			{
+		foreach ($data as $datas) {
+			if ($datas->role == "main") {
 				$theme_id = $datas->id;
 				$name_check = $datas->name;
-			} 
+			}
 		}
-		$template_name='templates/product.liquid';
+		$template_name = 'templates/product.liquid';
 		$server_template = $this->shopify->setShopUrl($shopUrl)
-								->setAccessToken($accessToken)
-								->get("/admin/themes/".$theme_id."/assets.json", ["asset[key]" => "$template_name", "theme_id" => $theme_id]);
+			->setAccessToken($accessToken)
+			->get("/admin/themes/" . $theme_id . "/assets.json", ["asset[key]" => "$template_name", "theme_id" => $theme_id]);
 		$view = $server_template['value'];
 		$view .= "{% include 'personalisation-popup' %}{% assign event_identifier = product.metafields.disable_robe_key %}
 		<input type='hidden' value='{{ disable_robe_key['disable_robe_key'] }}' id='disable_robe_key' class='disable_robe_key' />
@@ -396,40 +382,38 @@ class ShopifyController extends Controller
 		<input type='hidden' value='{{ product.variants.first.id }}' id='product_id' class='product' />
 		<input type='hidden' value='{{ product.id }}' id='product_id_real' class='product' />
 		<input type='hidden' value='{{ product.title }}' id='product_name' class='product' />";
-		
-		$this->update_templete_files($view,$shopUrl,$accessToken,$theme_id);
+
+		$this->update_templete_files($view, $shopUrl, $accessToken, $theme_id);
 	}
 
 
-	public function update_templete_files($view,$shopUrl,$accessToken,$theme_id)
+	public function update_templete_files($view, $shopUrl, $accessToken, $theme_id)
 	{
 		$postData = [
-							"key" => "templates/product.liquid",
-							"value" => $view
-					];
-		$data = $this->shopify->setShopUrl($shopUrl)->setAccessToken($accessToken)->put('/admin/themes/'.$theme_id.'/assets.json',[ 'asset' => $postData ]);
+			"key" => "templates/product.liquid",
+			"value" => $view
+		];
+		$data = $this->shopify->setShopUrl($shopUrl)->setAccessToken($accessToken)->put('/admin/themes/' . $theme_id . '/assets.json', ['asset' => $postData]);
 		// dd($data);
 	}
 
 	// This function create a template for popup
 	// By using this function we include the popup on the frontend
-    public function create_template()
-    {
-		$shopUrl= session('myshopifyDomain');
+	public function create_template()
+	{
+		$shopUrl = session('myshopifyDomain');
 		// dd($shopUrl);
-        $accessToken= session('accessToken');
-        $data = $this->shopify->setShopUrl($shopUrl)->setAccessToken($accessToken)->get('admin/themes.json');
-        $objection = json_decode($data);
+		$accessToken = session('accessToken');
+		$data = $this->shopify->setShopUrl($shopUrl)->setAccessToken($accessToken)->get('admin/themes.json');
+		$objection = json_decode($data);
         // dd($data);
-        $name_check = "";
-        $theme_id;
-        foreach($data as $datas)
-        {
-            if($datas->role == "main")
-            {
-                $theme_id = $datas->id;
-                $name_check = $datas->name;
-            } 
+		$name_check = "";
+		$theme_id;
+		foreach ($data as $datas) {
+			if ($datas->role == "main") {
+				$theme_id = $datas->id;
+				$name_check = $datas->name;
+			}
 		}
 		$view = "<style>
 
@@ -1648,25 +1632,24 @@ class ShopifyController extends Controller
     
   });
 </script>";
-        $postData = [
-                            "key" => "snippets/personalisation-popup.liquid",
-                            "value" => $view
-					];
-		$themes_info = DB::Table('themesdata')->where('shopId', session('shopifyId') )->where('themeId', $theme_id)->first();
-		if($themes_info)
-		{
+		$postData = [
+			"key" => "snippets/personalisation-popup.liquid",
+			"value" => $view
+		];
+		$themes_info = DB::Table('themesdata')->where('shopId', session('shopifyId'))->where('themeId', $theme_id)->first();
+		if ($themes_info) {
 			return true;
-		}else{
-			$data2 = $this->shopify->setShopUrl($shopUrl)->setAccessToken($accessToken)->put('/admin/themes/'.$theme_id.'/assets.json',[ 'asset' => $postData ]);
+		} else {
+			$data2 = $this->shopify->setShopUrl($shopUrl)->setAccessToken($accessToken)->put('/admin/themes/' . $theme_id . '/assets.json', ['asset' => $postData]);
 			$template_name = "snippets/personalisation-popup.liquid";
 			$theme_id = $data2['theme_id'];
 			$id = DB::table('themesdata')->insertGetId(
-				['key' => $template_name, 'value' => $view, 'themeId' => $theme_id , 'shopId' => session('shopifyId'), 'disable' => '1']
+				['key' => $template_name, 'value' => $view, 'themeId' => $theme_id, 'shopId' => session('shopifyId'), 'disable' => '1']
 			);
 			$this->include_template_files();
 		}
 
 
-    }
+	}
 
 }
