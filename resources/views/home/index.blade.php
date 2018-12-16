@@ -43,8 +43,8 @@
 							<select name="type_option" id="type_option">
 								<option value="front_embroidery">Front Embroidery</option>
 								<option value="back_embroidery">Back Embroidery</option>
-								<option value="front_back_embroidery">Front & Back Embroidery</option>
-								<option value="second_front_back_embroidery">Second Front & Back Line</option>
+								<!-- <option value="front_back_embroidery">Front & Back Embroidery</option> -->
+								<!-- <option value="second_front_back_embroidery">Second Front & Back Line</option> -->
 							</select>
 						</div>
 					</div>
