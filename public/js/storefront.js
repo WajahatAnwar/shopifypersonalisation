@@ -30,7 +30,7 @@ var myAppJavaScript = function($) {
   $(".double-front-rush").hide();
   $(".double-back-rush").hide();
 
-  if ( $( ".product_size" ).length ) {
+  if ($(".product_size").length) {
     $("size_field23").val("General");
   }
 
@@ -844,6 +844,13 @@ var myAppJavaScript = function($) {
       $("#from_back2_embroidery").attr("maxlength", "11");
     }
     $("#fuck_this_field").val(font_style);
+
+    $(".ecom-modal .swatch-element").removeClass(
+      "highlight_font_style_product"
+    );
+    $(this)
+      .parent()
+      .addClass("highlight_font_style_product");
 
     color_valid = $("#color_of_embroidery").val();
     font_valid = $("#fuck_this_field").val();
